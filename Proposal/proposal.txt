@@ -2,4 +2,21 @@ Nate Koch
 CIS 399 iOS Dev
 Final Project Proposal
 
+For my project I intend to implement a todo list app that makes a long 
+list of things to do simple by showing you only the next thing that you 
+have to do. On the Task view you can either complete or skip a task. 
+Skipping a task simply puts it after the next item to do in the list. 
+You can choose to have a due date displayed under the task as well as
+the current weather if you want to view conditions at a glance. There will
+be a list view as well that allows you to edit tasks and reorder the list
+to show present you in the order you want to do things in. To view different
+lists swiping left or right through the TodoLists while in task view will
+accomplish this.
 
+Using Core Data entities will be a TodoList and a task. Deleting a TodoList
+will also cascade and delete all of its children tasks through a relationship.
+The TodoList will have attributes name, tasks, and color. The Task will have
+attributes name, date/time, weatherEnabled, orderIndex, and TodoList 
+relationship.
+
+Sketches and more detail for the app are provided in Proposal_Sketches.pdf
