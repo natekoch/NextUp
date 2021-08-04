@@ -11,8 +11,12 @@ struct TaskView: View {
     var body: some View {
         VStack {
             Spacer()
+            Text("Next Up:")
+                .bold()
+                .font(.system(size: 20))
             Text("Task Name")
                 .bold()
+                .padding(.top)
                 .font(.system(size: 30))
                 //.padding(.bottom, 75)
             Text("Date/Time")
