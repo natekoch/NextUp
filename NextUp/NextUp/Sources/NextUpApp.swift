@@ -13,7 +13,9 @@ struct NextUpApp: App {
 
     var body: some Scene {
         WindowGroup {
-            TaskView()
+            NavigationView {
+                TaskView()
+            }
         }
     }
 }

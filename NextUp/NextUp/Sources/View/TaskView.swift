@@ -14,7 +14,13 @@ struct TaskView: View {
             Text("Task Name")
                 .bold()
                 .font(.system(size: 30))
-                .padding(.bottom, 75)
+                //.padding(.bottom, 75)
+            Text("Date/Time")
+                .padding(.top)
+            HStack {
+                Image(systemName: "cloud.sun.rain").padding(.vertical)
+                Text("78*").padding(.vertical)
+            }
             Button(action: {}, label: {
                 Text("Complete").bold()
             })
@@ -23,17 +29,8 @@ struct TaskView: View {
             Button(action: {}, label: {
                 Text("Skip")
             })
-            .font(.system(size: 18))
+            
             Spacer()
-            HStack {
-                Button(action: {}, label: {
-                    Image(systemName: "gearshape")
-                        .font(Font.body)
-                        .imageScale(.large)
-                })
-                .padding(.leading, 18)
-                Spacer()
-            }
         }.navigationTitle("Todo List Name")
         .toolbar(content: {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -50,6 +47,17 @@ struct TaskView: View {
                     .accessibilityLabel("Show Todo Lists")
                     .accessibility(addTraits: .isButton)
                 }
+            }
+            ToolbarItemGroup(placement: .bottomBar) {
+                Button(action: {}, label: {
+                    Image(systemName: "gearshape")
+                        .font(Font.body)
+                        .imageScale(.large)
+                })
+                Spacer()
+                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    Text("Edit")
+                })
             }
         })
     }

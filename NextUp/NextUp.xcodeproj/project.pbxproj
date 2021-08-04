@@ -15,6 +15,9 @@
 		479922DD26B854E800CB5919 /* NextUpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479922DC26B854E800CB5919 /* NextUpUITests.swift */; };
 		479922F526BA3AA800CB5919 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479922F426BA3AA800CB5919 /* RootView.swift */; };
 		479922F726BA455000CB5919 /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479922F626BA455000CB5919 /* TaskView.swift */; };
+		479922F926BA557D00CB5919 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479922F826BA557D00CB5919 /* TodoListView.swift */; };
+		479922FB26BAF94C00CB5919 /* TaskEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479922FA26BAF94C00CB5919 /* TaskEditView.swift */; };
+		479922FD26BAF98E00CB5919 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479922FC26BAF98E00CB5919 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		479922DE26B854E800CB5919 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		479922F426BA3AA800CB5919 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		479922F626BA455000CB5919 /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
+		479922F826BA557D00CB5919 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
+		479922FA26BAF94C00CB5919 /* TaskEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditView.swift; sourceTree = "<group>"; };
+		479922FC26BAF98E00CB5919 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +104,6 @@
 		479922B926B854E600CB5919 /* NextUp */ = {
 			isa = PBXGroup;
 			children = (
-				479922C826B854E800CB5919 /* Info.plist */,
 				479922F026B858DA00CB5919 /* Sources */,
 			);
 			path = NextUp;
@@ -135,6 +140,9 @@
 			children = (
 				479922F426BA3AA800CB5919 /* RootView.swift */,
 				479922F626BA455000CB5919 /* TaskView.swift */,
+				479922F826BA557D00CB5919 /* TodoListView.swift */,
+				479922FA26BAF94C00CB5919 /* TaskEditView.swift */,
+				479922FC26BAF98E00CB5919 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -156,6 +164,7 @@
 		479922EF26B8587100CB5919 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				479922C826B854E800CB5919 /* Info.plist */,
 				479922C526B854E800CB5919 /* NextUp.xcdatamodeld */,
 				479922BE26B854E800CB5919 /* Assets.xcassets */,
 				479922C026B854E800CB5919 /* Preview Content */,
@@ -330,8 +339,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				479922FD26BAF98E00CB5919 /* SettingsView.swift in Sources */,
 				479922BB26B854E600CB5919 /* NextUpApp.swift in Sources */,
 				479922C726B854E800CB5919 /* NextUp.xcdatamodeld in Sources */,
+				479922F926BA557D00CB5919 /* TodoListView.swift in Sources */,
+				479922FB26BAF94C00CB5919 /* TaskEditView.swift in Sources */,
 				479922F526BA3AA800CB5919 /* RootView.swift in Sources */,
 				479922F726BA455000CB5919 /* TaskView.swift in Sources */,
 			);
@@ -491,10 +503,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_ASSET_PATHS = "\"NextUp/Sources/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = A24VD6MAAN;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = NextUp/Info.plist;
+				INFOPLIST_FILE = NextUp/Sources/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -513,10 +525,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_ASSET_PATHS = "\"NextUp/Sources/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = A24VD6MAAN;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = NextUp/Info.plist;
+				INFOPLIST_FILE = NextUp/Sources/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
