@@ -18,7 +18,6 @@ struct TaskView: View {
                 .bold()
                 .padding(.top)
                 .font(.system(size: 30))
-                //.padding(.bottom, 75)
             Text("Date/Time")
                 .padding(.top)
             HStack {

@@ -18,6 +18,10 @@
 		479922F926BA557D00CB5919 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479922F826BA557D00CB5919 /* TodoListView.swift */; };
 		479922FB26BAF94C00CB5919 /* TaskEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479922FA26BAF94C00CB5919 /* TaskEditView.swift */; };
 		479922FD26BAF98E00CB5919 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479922FC26BAF98E00CB5919 /* SettingsView.swift */; };
+		4799232226BCBB7A00CB5919 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4799231E26BCBB7A00CB5919 /* Task.swift */; };
+		4799232326BCBB7A00CB5919 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4799231F26BCBB7A00CB5919 /* Task+CoreDataProperties.swift */; };
+		4799232426BCBB7A00CB5919 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4799232026BCBB7A00CB5919 /* TodoList.swift */; };
+		4799232526BCBB7A00CB5919 /* TodoList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4799232126BCBB7A00CB5919 /* TodoList+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,10 @@
 		479922F826BA557D00CB5919 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		479922FA26BAF94C00CB5919 /* TaskEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditView.swift; sourceTree = "<group>"; };
 		479922FC26BAF98E00CB5919 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		4799231E26BCBB7A00CB5919 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		4799231F26BCBB7A00CB5919 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4799232026BCBB7A00CB5919 /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
+		4799232126BCBB7A00CB5919 /* TodoList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoList+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +165,10 @@
 		479922EE26B8585D00CB5919 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4799231E26BCBB7A00CB5919 /* Task.swift */,
+				4799231F26BCBB7A00CB5919 /* Task+CoreDataProperties.swift */,
+				4799232026BCBB7A00CB5919 /* TodoList.swift */,
+				4799232126BCBB7A00CB5919 /* TodoList+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,11 +353,15 @@
 			files = (
 				479922FD26BAF98E00CB5919 /* SettingsView.swift in Sources */,
 				479922BB26B854E600CB5919 /* NextUpApp.swift in Sources */,
+				4799232226BCBB7A00CB5919 /* Task.swift in Sources */,
 				479922C726B854E800CB5919 /* NextUp.xcdatamodeld in Sources */,
+				4799232326BCBB7A00CB5919 /* Task+CoreDataProperties.swift in Sources */,
 				479922F926BA557D00CB5919 /* TodoListView.swift in Sources */,
 				479922FB26BAF94C00CB5919 /* TaskEditView.swift in Sources */,
+				4799232426BCBB7A00CB5919 /* TodoList.swift in Sources */,
 				479922F526BA3AA800CB5919 /* RootView.swift in Sources */,
 				479922F726BA455000CB5919 /* TaskView.swift in Sources */,
+				4799232526BCBB7A00CB5919 /* TodoList+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
