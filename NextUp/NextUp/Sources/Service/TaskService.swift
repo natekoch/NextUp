@@ -11,7 +11,7 @@ import CoreData
 import OSLog
 
 
-class TaskService : TaskRepository {
+class TaskService {// : TaskRepository {
     func addTodoList(withName name: String) {
     
     }
@@ -28,11 +28,11 @@ class TaskService : TaskRepository {
         
     }
     
-    func todoListResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<TodoList>? {
-        return 
-    }
+    //func todoListResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<TodoList>? {
+       // return
+    //}
     
-    func taskResultsController(for todoList: TodoList, with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Task>? {
-        return
-    }
+    //func taskResultsController(for todoList: TodoList, with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Task>? {
+        //return
+    //}
 }
