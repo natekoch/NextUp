@@ -27,6 +27,7 @@
 		47BE11C226BCDCB00067AE26 /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE11C126BCDCB00067AE26 /* TaskService.swift */; };
 		47BE11C426BCDCBC0067AE26 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE11C326BCDCBC0067AE26 /* TaskRepository.swift */; };
 		47BE11C626BE15650067AE26 /* TaskEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE11C526BE15650067AE26 /* TaskEditView.swift */; };
+		47BE11C926BE3AEC0067AE26 /* Logger+NextUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE11C826BE3AEC0067AE26 /* Logger+NextUp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		47BE11C126BCDCB00067AE26 /* TaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
 		47BE11C326BCDCBC0067AE26 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
 		47BE11C526BE15650067AE26 /* TaskEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditView.swift; sourceTree = "<group>"; };
+		47BE11C826BE3AEC0067AE26 /* Logger+NextUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+NextUp.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 		479922F026B858DA00CB5919 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				47BE11C726BE3AD60067AE26 /* Extension */,
 				479922F226B8593A00CB5919 /* DependencyInjection */,
 				479922EE26B8585D00CB5919 /* Model */,
 				479922EF26B8587100CB5919 /* Resources */,
@@ -235,6 +238,14 @@
 				47BE11C326BCDCBC0067AE26 /* TaskRepository.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		47BE11C726BE3AD60067AE26 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				47BE11C826BE3AEC0067AE26 /* Logger+NextUp.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,6 +386,7 @@
 				479922F926BA557D00CB5919 /* TodoListView.swift in Sources */,
 				479922FB26BAF94C00CB5919 /* TaskAddView.swift in Sources */,
 				47BE11BE26BCC7730067AE26 /* Injector.swift in Sources */,
+				47BE11C926BE3AEC0067AE26 /* Logger+NextUp.swift in Sources */,
 				4799232426BCBB7A00CB5919 /* TodoList.swift in Sources */,
 				47BE11C426BCDCBC0067AE26 /* TaskRepository.swift in Sources */,
 				479922F526BA3AA800CB5919 /* RootView.swift in Sources */,

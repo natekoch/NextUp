@@ -12,7 +12,7 @@ struct TaskEditView: View {
     var body: some View {
         Form {
             Section(header: Text("Edit Task Name")) {
-                TextField("Current ask Name", text: $newName)
+                TextField("Current Task Name", text: $newName)
                     .accessibility(label: Text("Change Task Name"))
             }
             Section(header: Text("Choose Due Date")) {
