@@ -2,17 +2,16 @@
 //  TaskEditView.swift
 //  NextUp
 //
-//  Created by Nate Koch on 8/6/21.
+//  Created by Nate Koch on 8/4/21.
 //
 
 import SwiftUI
 
-
-struct TaskEditView: View {
+struct TaskAddView: View {
     var body: some View {
         Form {
-            Section(header: Text("Edit Task Name")) {
-                TextField("Current ask Name", text: $newName)
+            Section(header: Text("Add Task Name")) {
+                TextField("Task Name", text: $newName)
                     .accessibility(label: Text("Change Task Name"))
             }
             Section(header: Text("Choose Due Date")) {
@@ -25,8 +24,8 @@ struct TaskEditView: View {
                 Toggle("Display Weather", isOn: $isToggledWeather)
                     .accessibility(label: Text("Toggle Weather"))
             }
-        }.accessibilityLabel("Edit Task Form")
-        .navigationBarTitle("Edit New Task")
+        }.accessibilityLabel("Add Task Form")
+        .navigationBarTitle("Add New Task")
     }
     
     @State private var newName: String = ""
@@ -36,8 +35,8 @@ struct TaskEditView: View {
     
 }
 
-struct TaskEditView_Previews: PreviewProvider {
+struct TaskAddView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskEditView()
+        TaskAddView()
     }
 }
