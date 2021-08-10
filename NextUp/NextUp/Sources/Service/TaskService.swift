@@ -11,7 +11,8 @@ import CoreData
 import OSLog
 
 
-class TaskService {// : TaskRepository {
+class TaskService : TaskRepository {
+    
     func addTodoList(withName name: String, withColor color: String) {
         _ = TodoList(color: color, name: name, context: persistentContainer.viewContext)
         

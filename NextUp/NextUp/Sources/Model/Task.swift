@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class Task: NSManagedObject {
-    convenience init(date: Date?, name: String?, orderIndex: Int64, weatherEnabled: Bool, todoList: TodoList?, context: NSManagedObjectContext) {
+    convenience init(date: Date?, name: String, orderIndex: Int64, weatherEnabled: Bool, todoList: TodoList, context: NSManagedObjectContext) {
         self.init(context: context)
         
         self.date = date

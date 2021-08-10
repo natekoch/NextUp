@@ -28,6 +28,7 @@
 		47BE11C426BCDCBC0067AE26 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE11C326BCDCBC0067AE26 /* TaskRepository.swift */; };
 		47BE11C626BE15650067AE26 /* TaskEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE11C526BE15650067AE26 /* TaskEditView.swift */; };
 		47BE11C926BE3AEC0067AE26 /* Logger+NextUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE11C826BE3AEC0067AE26 /* Logger+NextUp.swift */; };
+		47BE11CB26BF085E0067AE26 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE11CA26BF085E0067AE26 /* AddTaskViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		47BE11C326BCDCBC0067AE26 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
 		47BE11C526BE15650067AE26 /* TaskEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditView.swift; sourceTree = "<group>"; };
 		47BE11C826BE3AEC0067AE26 /* Logger+NextUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+NextUp.swift"; sourceTree = "<group>"; };
+		47BE11CA26BF085E0067AE26 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 		479922ED26B8582800CB5919 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				47BE11CA26BF085E0067AE26 /* AddTaskViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				479922FD26BAF98E00CB5919 /* SettingsView.swift in Sources */,
+				47BE11CB26BF085E0067AE26 /* AddTaskViewModel.swift in Sources */,
 				47BE11C626BE15650067AE26 /* TaskEditView.swift in Sources */,
 				479922BB26B854E600CB5919 /* NextUpApp.swift in Sources */,
 				4799232226BCBB7A00CB5919 /* Task.swift in Sources */,

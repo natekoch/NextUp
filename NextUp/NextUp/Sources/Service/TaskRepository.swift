@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 protocol TaskRepository {
-    func addTodoList(withName name: String)
+    func addTodoList(withName name: String, withColor color: String)
     
     func addTask(to todoList: TodoList, name: String, date: Date?, weatherEnabled: Bool)
     

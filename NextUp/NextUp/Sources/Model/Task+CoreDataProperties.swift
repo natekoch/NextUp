@@ -17,10 +17,10 @@ extension Task {
     }
 
     @NSManaged public var date: Date?
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     @NSManaged public var orderIndex: Int64
     @NSManaged public var weatherEnabled: Bool
-    @NSManaged public var todoList: TodoList?
+    @NSManaged public var todoList: TodoList
 
 }
 

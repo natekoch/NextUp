@@ -9,5 +9,9 @@ import Foundation
 import SwiftUI
 
 class ViewFactory {
+    init(taskRepository: TaskRepository) {
+        self.taskRepository = taskRepository
+    }
     
+    private let taskRepository: TaskRepository
 }
