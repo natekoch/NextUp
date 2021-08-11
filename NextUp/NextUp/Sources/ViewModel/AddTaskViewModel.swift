@@ -29,8 +29,6 @@ class AddTaskViewModel : ObservableObject {
     }
     
     
-    
-    
     // MARK: Properties
     let todoList: TodoList
     

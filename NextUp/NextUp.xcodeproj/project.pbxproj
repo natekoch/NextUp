@@ -29,6 +29,7 @@
 		47BE11C626BE15650067AE26 /* TaskEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE11C526BE15650067AE26 /* TaskEditView.swift */; };
 		47BE11C926BE3AEC0067AE26 /* Logger+NextUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE11C826BE3AEC0067AE26 /* Logger+NextUp.swift */; };
 		47BE11CB26BF085E0067AE26 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE11CA26BF085E0067AE26 /* AddTaskViewModel.swift */; };
+		47BE11CD26C393AA0067AE26 /* TodoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE11CC26C393AA0067AE26 /* TodoListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		47BE11C526BE15650067AE26 /* TaskEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditView.swift; sourceTree = "<group>"; };
 		47BE11C826BE3AEC0067AE26 /* Logger+NextUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+NextUp.swift"; sourceTree = "<group>"; };
 		47BE11CA26BF085E0067AE26 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
+		47BE11CC26C393AA0067AE26 /* TodoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				47BE11CA26BF085E0067AE26 /* AddTaskViewModel.swift */,
+				47BE11CC26C393AA0067AE26 /* TodoListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				4799232326BCBB7A00CB5919 /* Task+CoreDataProperties.swift in Sources */,
 				479922F926BA557D00CB5919 /* TodoListView.swift in Sources */,
 				479922FB26BAF94C00CB5919 /* TaskAddView.swift in Sources */,
+				47BE11CD26C393AA0067AE26 /* TodoListViewModel.swift in Sources */,
 				47BE11BE26BCC7730067AE26 /* Injector.swift in Sources */,
 				47BE11C926BE3AEC0067AE26 /* Logger+NextUp.swift in Sources */,
 				4799232426BCBB7A00CB5919 /* TodoList.swift in Sources */,
