@@ -28,6 +28,25 @@ struct TaskAddView: View {
         .navigationBarTitle("Add New Task")
     }
     
+    private func saveButton() -> some View {
+        Button(action: {
+            viewModel.saveChanges()
+
+            isPresented = false
+        }, label: {
+            Text("Save")
+        }).disabled(!viewModel.canSave)
+    }
+    
+    init(isPresented: Binding<Bool>, viewModel: AddTaskViewModel) {
+        self._isPresented = isPresented
+        self.viewModel = viewModel
+    }
+    
+    @Binding private var isPresented: Bool
+    @ObservedObject private var viewModel: AddTaskViewModel
+    
+    
     @State private var newName: String = ""
     @State private var isToggledDate: Bool = false
     @State private var newDate: Date = Date()
@@ -35,8 +54,8 @@ struct TaskAddView: View {
     
 }
 
-struct TaskAddView_Previews: PreviewProvider {
-    static var previews: some View {
-        TaskAddView()
-    }
-}
+//struct TaskAddView_Previews: PreviewProvider {
+    //static var previews: some View {
+        //TaskAddView()
+    //}
+//}
