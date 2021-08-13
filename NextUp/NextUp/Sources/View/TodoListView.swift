@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+/*
 struct TodoListView: View {
     var body: some View {
         ZStack {
@@ -40,3 +40,4 @@ struct TodoListView_Previews: PreviewProvider {
         TodoListView()
     }
 }
+*/

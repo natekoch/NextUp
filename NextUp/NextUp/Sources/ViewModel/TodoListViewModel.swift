@@ -38,7 +38,7 @@ class TodoListViewModel: NSObject, ObservableObject, NSFetchedResultsControllerD
     var todoList: TodoList
     
     var resultsController: NSFetchedResultsController<Task>? = nil
-
+    
     var tasks: Array<Task> {
         resultsController?.fetchedObjects ?? []
     }
