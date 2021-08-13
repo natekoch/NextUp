@@ -11,21 +11,32 @@ struct TaskAddView: View {
     var body: some View {
         Form {
             Section(header: Text("Add Task Name")) {
-                TextField("Task Name", text: $newName)
+                TextField("Task Name", text: $viewModel.name)
                     .accessibility(label: Text("Change Task Name"))
             }
             Section(header: Text("Choose Due Date")) {
-                Toggle("Enable Due Date", isOn: $isToggledDate)
+                Toggle("Enable Due Date", isOn: $viewModel.dateEnabled)
                     .accessibility(label: Text("Toggle Due Date"))
-                DatePicker("Due Date", selection: $newDate)
+                DatePicker("Due Date", selection: $viewModel.date)
                     .accessibility(label: Text("Change Due Date"))
+                    .disabled(!viewModel.dateEnabled)
             }
             Section(header: Text("Display Weather?")) {
-                Toggle("Display Weather", isOn: $isToggledWeather)
+                Toggle("Display Weather", isOn: $viewModel.weatherEnabled)
                     .accessibility(label: Text("Toggle Weather"))
             }
         }.accessibilityLabel("Add Task Form")
         .navigationBarTitle("Add New Task")
+        .toolbar(content: {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                saveButton()
+            }
+
+            // This prevents a bug that causes the back button to disappear, based on: https://stackoverflow.com/a/67838069/2666110
+            ToolbarItem(placement: .navigationBarLeading) {
+                Color.clear.hidden()
+            }
+        })
     }
     
     private func saveButton() -> some View {
@@ -46,16 +57,16 @@ struct TaskAddView: View {
     @Binding private var isPresented: Bool
     @ObservedObject private var viewModel: AddTaskViewModel
     
-    
-    @State private var newName: String = ""
-    @State private var isToggledDate: Bool = false
-    @State private var newDate: Date = Date()
-    @State private var isToggledWeather: Bool = false
-    
 }
 
-//struct TaskAddView_Previews: PreviewProvider {
-    //static var previews: some View {
-        //TaskAddView()
-    //}
-//}
+struct TaskAddView_Previews: PreviewProvider {
+    @State static var isPresented = true
+
+    static var previews: some View {
+        let todoList = TodoList(color: "red", name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
+
+        return NavigationView {
+            TaskAddView(isPresented: $isPresented, viewModel: AddTaskViewModel(todoList: todoList, taskRepository: Injector.shared.taskRepository))
+        }
+    }
+}

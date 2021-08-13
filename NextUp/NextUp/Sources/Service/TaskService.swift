@@ -83,7 +83,7 @@ class TaskService : TaskRepository {
     
     
     init() {
-        persistentContainer = NSPersistentContainer(name: "Model")
+        persistentContainer = NSPersistentContainer(name: "NextUp")
         
         persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
             self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true

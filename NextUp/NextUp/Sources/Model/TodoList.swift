@@ -9,8 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(TodoList)
-public class TodoList: NSManagedObject {
+class TodoList: NSManagedObject {
     convenience init(color: String?, name: String, context: NSManagedObjectContext) {
         self.init(context: context)
         

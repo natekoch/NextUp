@@ -26,6 +26,7 @@ class AddTaskViewModel : ObservableObject {
         self.name = ""
         self.date = Date()
         self.weatherEnabled = false
+        self.dateEnabled = false
     }
     
     
@@ -33,11 +34,11 @@ class AddTaskViewModel : ObservableObject {
     let todoList: TodoList
     
     @Published var name: String
-    @Published var date: Date?
+    @Published var date: Date
+    @Published var dateEnabled: Bool
     @Published var weatherEnabled: Bool
     private let taskRepository: TaskRepository
     
-    // TODO: Temporary fix
     var canSave: Bool {
         name != ""
     }

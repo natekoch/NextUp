@@ -12,7 +12,7 @@ import CoreData
 
 extension TodoList {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<TodoList> {
+    @nonobjc public class dynamic func fetchRequest() -> NSFetchRequest<TodoList> {
         return NSFetchRequest<TodoList>(entityName: "TodoList")
     }
 

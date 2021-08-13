@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4784F09B26C6566800B01832 /* EditTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F09A26C6566800B01832 /* EditTaskViewModel.swift */; };
 		479922BB26B854E600CB5919 /* NextUpApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479922BA26B854E600CB5919 /* NextUpApp.swift */; };
 		479922BF26B854E800CB5919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 479922BE26B854E800CB5919 /* Assets.xcassets */; };
 		479922C226B854E800CB5919 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 479922C126B854E800CB5919 /* Preview Assets.xcassets */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4784F09A26C6566800B01832 /* EditTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewModel.swift; sourceTree = "<group>"; };
 		479922B726B854E600CB5919 /* NextUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		479922BA26B854E600CB5919 /* NextUpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextUpApp.swift; sourceTree = "<group>"; };
 		479922BE26B854E800CB5919 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			children = (
 				47BE11CA26BF085E0067AE26 /* AddTaskViewModel.swift */,
 				47BE11CC26C393AA0067AE26 /* TodoListViewModel.swift */,
+				4784F09A26C6566800B01832 /* EditTaskViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -195,8 +198,8 @@
 		479922EF26B8587100CB5919 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				479922C826B854E800CB5919 /* Info.plist */,
 				479922C526B854E800CB5919 /* NextUp.xcdatamodeld */,
+				479922C826B854E800CB5919 /* Info.plist */,
 				479922BE26B854E800CB5919 /* Assets.xcassets */,
 				479922C026B854E800CB5919 /* Preview Content */,
 			);
@@ -394,6 +397,7 @@
 				479922FB26BAF94C00CB5919 /* TaskAddView.swift in Sources */,
 				47BE11CD26C393AA0067AE26 /* TodoListViewModel.swift in Sources */,
 				47BE11BE26BCC7730067AE26 /* Injector.swift in Sources */,
+				4784F09B26C6566800B01832 /* EditTaskViewModel.swift in Sources */,
 				47BE11C926BE3AEC0067AE26 /* Logger+NextUp.swift in Sources */,
 				4799232426BCBB7A00CB5919 /* TodoList.swift in Sources */,
 				47BE11C426BCDCBC0067AE26 /* TaskRepository.swift in Sources */,
