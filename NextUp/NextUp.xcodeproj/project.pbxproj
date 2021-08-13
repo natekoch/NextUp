@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4784F09B26C6566800B01832 /* EditTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F09A26C6566800B01832 /* EditTaskViewModel.swift */; };
+		4784F09D26C7273600B01832 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F09C26C7273600B01832 /* TaskViewModel.swift */; };
 		479922BB26B854E600CB5919 /* NextUpApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479922BA26B854E600CB5919 /* NextUpApp.swift */; };
 		479922BF26B854E800CB5919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 479922BE26B854E800CB5919 /* Assets.xcassets */; };
 		479922C226B854E800CB5919 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 479922C126B854E800CB5919 /* Preview Assets.xcassets */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		4784F09A26C6566800B01832 /* EditTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewModel.swift; sourceTree = "<group>"; };
+		4784F09C26C7273600B01832 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		479922B726B854E600CB5919 /* NextUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		479922BA26B854E600CB5919 /* NextUpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextUpApp.swift; sourceTree = "<group>"; };
 		479922BE26B854E800CB5919 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				47BE11CA26BF085E0067AE26 /* AddTaskViewModel.swift */,
 				47BE11CC26C393AA0067AE26 /* TodoListViewModel.swift */,
 				4784F09A26C6566800B01832 /* EditTaskViewModel.swift */,
+				4784F09C26C7273600B01832 /* TaskViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				479922FD26BAF98E00CB5919 /* SettingsView.swift in Sources */,
+				4784F09D26C7273600B01832 /* TaskViewModel.swift in Sources */,
 				47BE11CB26BF085E0067AE26 /* AddTaskViewModel.swift in Sources */,
 				47BE11C626BE15650067AE26 /* TaskEditView.swift in Sources */,
 				479922BB26B854E600CB5919 /* NextUpApp.swift in Sources */,

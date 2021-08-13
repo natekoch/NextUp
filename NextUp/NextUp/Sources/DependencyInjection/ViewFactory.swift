@@ -17,6 +17,10 @@ class ViewFactory {
         TaskEditView(isPresented: isPresented, viewModel: EditTaskViewModel(task: task, taskRepository: self.taskRepository))
     }
     
+    func taskView(isPresented: Binding<Bool>, task: Task) -> TaskView {
+        TaskView(isPresented: isPresented, viewModel: TaskViewModel(task: task, taskRepository: self.taskRepository), viewFactory: self)
+    }
+    
     func rootView() -> RootView {
         RootView(viewFactory: self)
     }
