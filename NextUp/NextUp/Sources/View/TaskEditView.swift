@@ -27,6 +27,7 @@ struct TaskEditView: View {
                     .accessibility(label: Text("Toggle Weather"))
             }
         }.accessibilityLabel("Edit Task Form")
+        .foregroundColor(self.color)
         .navigationBarTitle("Edit Task")
         .toolbar(content: {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -59,18 +60,21 @@ struct TaskEditView: View {
     init(isPresented: Binding<Bool>, viewModel: EditTaskViewModel) {
         self._isPresented = isPresented
         self.viewModel = viewModel
+        
+        self.color = Color(.sRGB, red: Double(viewModel.task.todoList.redValue), green: Double(viewModel.task.todoList.greenValue), blue: Double(viewModel.task.todoList.blueValue), opacity: 100)
     }
     
     @Binding private var isPresented: Bool
     @ObservedObject private var viewModel: EditTaskViewModel
     
+    private let color: Color
 }
 
 struct TaskEditView_Previews: PreviewProvider {
     @State static var isPresented = true
 
     static var previews: some View {
-        let todoList = TodoList(redValue: 0.0, greenValue: 0.0, blueValue: 0.0, name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
+        let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
 
         let task = Task(date: nil, name: "Example Task", orderIndex: 1, weatherEnabled: true, todoList: todoList, context: Injector.shared.persistentContainer.viewContext)
 

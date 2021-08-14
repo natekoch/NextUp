@@ -32,6 +32,7 @@ struct TaskView: View {
                     .bold()
                     .padding(.top)
                     .font(.system(size: 30))
+                    .foregroundColor(self.color)
                 Text(displayDateString)
                     .padding(.top)
                 HStack {
@@ -42,7 +43,8 @@ struct TaskView: View {
                     viewModel.completeTask()
                     // TODO: task completed bool
                 }, label: {
-                    Text("Complete").bold()
+                    Image(systemName: "checkmark.circle.fill").resizable().frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(.green)
+                        
                 })
                 .padding(.bottom)
                 .font(.system(size: 20))
@@ -51,7 +53,7 @@ struct TaskView: View {
                     // TODO: task skipped bool
                     shouldSkipTask = true
                 }, label: {
-                    Text("Skip")
+                    Image(systemName: "arrow.right").resizable().frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(.red)
                 })
                 
                 Spacer()
@@ -67,6 +69,7 @@ struct TaskView: View {
                         Image(systemName: "list.dash")
                             .font(Font.body)
                             .imageScale(.large)
+                            .foregroundColor(self.color)
                     }).accessibilityElement()
                     .accessibilityIdentifier("Show Todo Lists Button")
                     .accessibilityLabel("Show Todo Lists")
@@ -80,6 +83,7 @@ struct TaskView: View {
                     Image(systemName: "gearshape")
                         .font(Font.body)
                         .imageScale(.large)
+                        .accentColor(.red)
                 })
                 Spacer()
                 Button(action: {
@@ -107,6 +111,8 @@ struct TaskView: View {
         } else {
             self.displayDateString = ""
         }
+        
+        self.color = Color(.sRGB, red: Double(viewModel.task.todoList.redValue), green: Double(viewModel.task.todoList.greenValue), blue: Double(viewModel.task.todoList.blueValue), opacity: 100)
     }
     
     // MARK: Properties
@@ -119,13 +125,15 @@ struct TaskView: View {
     private let viewFactory: ViewFactory
     private let displayDateString: String
     private let dateFormatter: DateFormatter = DateFormatter()
+    
+    private let color: Color
 }
 
 struct TaskView_Previews: PreviewProvider {
     @State static var isPresented = false
 
     static var previews: some View {
-        let todoList = TodoList(redValue: 0.0, greenValue: 0.0, blueValue: 0.0, name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
+        let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
         
         let task = Task(date: Date(), name: "Preview Task", orderIndex: 0, weatherEnabled: false, todoList: todoList, context: Injector.shared.persistentContainer.viewContext)
         return NavigationView {

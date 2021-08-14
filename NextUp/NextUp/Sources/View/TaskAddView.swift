@@ -27,6 +27,7 @@ struct TaskAddView: View {
                     .accessibility(label: Text("Toggle Weather"))
             }
         }.accessibilityLabel("Add Task Form")
+        .foregroundColor(self.color)
         .navigationBarTitle("Add New Task")
         .toolbar(content: {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -53,18 +54,21 @@ struct TaskAddView: View {
     init(isPresented: Binding<Bool>, viewModel: AddTaskViewModel) {
         self._isPresented = isPresented
         self.viewModel = viewModel
+        
+        self.color = Color(.sRGB, red: Double(viewModel.todoList.redValue), green: Double(viewModel.todoList.greenValue), blue: Double(viewModel.todoList.blueValue), opacity: 100)
     }
     
     @Binding private var isPresented: Bool
     @ObservedObject private var viewModel: AddTaskViewModel
     
+    private let color: Color
 }
 
 struct TaskAddView_Previews: PreviewProvider {
     @State static var isPresented = true
 
     static var previews: some View {
-        let todoList = TodoList(redValue: 0.0, greenValue: 0.0, blueValue: 0.0, name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
+        let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
 
         return NavigationView {
             TaskAddView(isPresented: $isPresented, viewModel: AddTaskViewModel(todoList: todoList, taskRepository: Injector.shared.taskRepository))
