@@ -17,12 +17,16 @@ class ViewFactory {
         TaskEditView(isPresented: isPresented, viewModel: EditTaskViewModel(task: task, taskRepository: self.taskRepository))
     }
     
+    func todoListView(todoList: TodoList) -> TodoListView {
+        TodoListView(viewModel: TodoListViewModel(todoList: todoList, taskRepository: self.taskRepository), viewFactory: self)
+    }
+    
     func taskView(isPresented: Binding<Bool>, task: Task) -> TaskView {
         TaskView(isPresented: isPresented, viewModel: TaskViewModel(task: task, taskRepository: self.taskRepository), viewFactory: self)
     }
     
     func todoListAddView(isPresented: Binding<Bool>) -> TodoListAddView {
-        TodoListAddView(isPresented: isPresented, viewModel: TodoListAddViewModel(taskRepository: self.taskRepository))
+        TodoListAddView(isPresented: isPresented, viewModel: TodoListAddViewModel(taskRepository: self.taskRepository, viewFactory: self))
     }
     
     func noTodoListsView() -> NoTodoListsView {

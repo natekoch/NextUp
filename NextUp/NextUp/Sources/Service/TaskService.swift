@@ -95,5 +95,7 @@ class TaskService : TaskRepository {
     }
     
     // MARK: Properties
-    private let persistentContainer: NSPersistentContainer
+    let persistentContainer: NSPersistentContainer
+    
+    static let shared = TaskService()
 }

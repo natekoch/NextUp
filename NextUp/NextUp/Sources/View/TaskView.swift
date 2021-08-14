@@ -65,7 +65,9 @@ struct TaskView: View {
                     Text("")
                         .frame(width: 0, height: 0)
                         .accessibilityHidden(true)
-                    Button(action: {}, label: {
+                    Button(action: {
+                        // navigate to todo list view
+                    }, label: {
                         Image(systemName: "list.dash")
                             .font(Font.body)
                             .imageScale(.large)

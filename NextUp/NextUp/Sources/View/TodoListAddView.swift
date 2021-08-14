@@ -9,6 +9,11 @@ import SwiftUI
 
 struct TodoListAddView: View {
     var body: some View {
+        NavigationLink(
+            destination: viewModel.viewFactory.todoListView(todoList: viewModel.todoLists[viewModel.todoLists.count-1]),
+            isActive: $shouldNavigateToNewTodoList,
+            label: {}).hidden()
+                
         Form {
             Section(header: Text("Add Todo List Name")) {
                 TextField("Todo List Name", text: $viewModel.name).accessibility(label: Text("Add Todo List Name"))
@@ -33,8 +38,8 @@ struct TodoListAddView: View {
     private func saveButton() -> some View {
         Button(action: {
             viewModel.saveChanges()
-
-            isPresented = false
+            //isPresented = false
+            shouldNavigateToNewTodoList = true
         }, label: {
             Text("Save")
         }).disabled(!viewModel.canSave)
@@ -45,6 +50,8 @@ struct TodoListAddView: View {
         self._isPresented = isPresented
         self.viewModel = viewModel
     }
+    
+    @State private var shouldNavigateToNewTodoList = false
     
     @Binding private var isPresented: Bool
     @ObservedObject private var viewModel: TodoListAddViewModel
