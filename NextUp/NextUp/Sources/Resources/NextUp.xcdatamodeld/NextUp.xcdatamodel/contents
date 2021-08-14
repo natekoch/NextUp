@@ -8,12 +8,14 @@
         <relationship name="todoList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TodoList" inverseName="tasks" inverseEntity="TodoList"/>
     </entity>
     <entity name="TodoList" representedClassName=".TodoList" syncable="YES">
-        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="blueValue" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="greenValue" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="redValue" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Task" inverseName="todoList" inverseEntity="Task"/>
     </entity>
     <elements>
         <element name="Task" positionX="-63" positionY="-9" width="128" height="104"/>
-        <element name="TodoList" positionX="145.1582641601562" positionY="20.75827026367188" width="128" height="74"/>
+        <element name="TodoList" positionX="145.1582641601562" positionY="20.75827026367188" width="128" height="104"/>
     </elements>
 </model>

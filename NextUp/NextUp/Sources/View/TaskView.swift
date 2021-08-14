@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import CoreGraphics
 
 struct TaskView: View {
     // MARK: View
@@ -16,6 +17,12 @@ struct TaskView: View {
                 destination: viewFactory.taskEditView(isPresented: $shouldNavigateToEditTask, task: viewModel.task),
                 isActive: $shouldNavigateToEditTask,
                 label: {}).hidden()
+            
+            NavigationLink(
+                destination: viewFactory.taskView(isPresented: $shouldSkipTask, task: viewModel.task),
+                isActive: $shouldSkipTask,
+                label: {}).hidden()
+            
             VStack {
                 Spacer()
                 Text("Next Up:")
@@ -33,6 +40,7 @@ struct TaskView: View {
                 }
                 Button(action: {
                     viewModel.completeTask()
+                    // TODO: task completed bool
                 }, label: {
                     Text("Complete").bold()
                 })
@@ -40,6 +48,8 @@ struct TaskView: View {
                 .font(.system(size: 20))
                 Button(action: {
                     viewModel.skipTask()
+                    // TODO: task skipped bool
+                    shouldSkipTask = true
                 }, label: {
                     Text("Skip")
                 })
@@ -101,6 +111,7 @@ struct TaskView: View {
     
     // MARK: Properties
     @State private var shouldNavigateToEditTask = false
+    @State private var shouldSkipTask = false
     
     @Binding private var isPresented: Bool
     @ObservedObject private var viewModel: TaskViewModel
@@ -114,7 +125,7 @@ struct TaskView_Previews: PreviewProvider {
     @State static var isPresented = false
 
     static var previews: some View {
-        let todoList = TodoList(color: "red", name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
+        let todoList = TodoList(redValue: 0.0, greenValue: 0.0, blueValue: 0.0, name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
         
         let task = Task(date: Date(), name: "Preview Task", orderIndex: 0, weatherEnabled: false, todoList: todoList, context: Injector.shared.persistentContainer.viewContext)
         return NavigationView {

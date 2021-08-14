@@ -8,12 +8,15 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 class TodoList: NSManagedObject {
-    convenience init(color: String?, name: String, context: NSManagedObjectContext) {
+    convenience init(redValue: Float, greenValue: Float, blueValue: Float, name: String, context: NSManagedObjectContext) {
         self.init(context: context)
         
-        self.color = color
+        self.redValue = redValue
+        self.greenValue = greenValue
+        self.blueValue = blueValue
         self.name = name
     }
 }

@@ -9,12 +9,16 @@ import Foundation
 import Combine
 import CoreData
 import OSLog
+import CoreGraphics
 
 
 class TaskService : TaskRepository {
     
-    func addTodoList(withName name: String, withColor color: String) {
-        _ = TodoList(color: color, name: name, context: persistentContainer.viewContext)
+    func addTodoList(withName name: String, withColor color: CGColor) {
+        let redValue = Float(color.components?[0] ?? 0.0)
+        let greenValue = Float(color.components?[1] ?? 0.0)
+        let blueValue = Float(color.components?[2] ?? 0.0)
+        _ = TodoList(redValue: redValue, greenValue: greenValue, blueValue: blueValue, name: name, context: persistentContainer.viewContext)
         
         saveViewContext()
     }

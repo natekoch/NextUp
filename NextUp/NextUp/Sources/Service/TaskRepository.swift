@@ -7,9 +7,10 @@
 
 import Foundation
 import CoreData
+import CoreGraphics
 
 protocol TaskRepository {
-    func addTodoList(withName name: String, withColor color: String)
+    func addTodoList(withName name: String, withColor color: CGColor)
     
     func addTask(to todoList: TodoList, name: String, date: Date?, weatherEnabled: Bool)
     

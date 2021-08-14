@@ -2,7 +2,7 @@
 //  TodoList+CoreDataProperties.swift
 //  NextUp
 //
-//  Created by Nate Koch on 8/5/21.
+//  Created by Nate Koch on 8/13/21.
 //
 //
 
@@ -12,12 +12,14 @@ import CoreData
 
 extension TodoList {
 
-    @nonobjc public class dynamic func fetchRequest() -> NSFetchRequest<TodoList> {
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<TodoList> {
         return NSFetchRequest<TodoList>(entityName: "TodoList")
     }
 
-    @NSManaged public var color: String?
+    @NSManaged public var redValue: Float
     @NSManaged public var name: String
+    @NSManaged public var blueValue: Float
+    @NSManaged public var greenValue: Float
     @NSManaged public var tasks: NSSet?
 
 }
@@ -26,16 +28,16 @@ extension TodoList {
 extension TodoList {
 
     @objc(addTasksObject:)
-    @NSManaged func addToTasks(_ value: Task)
+    @NSManaged public func addToTasks(_ value: Task)
 
     @objc(removeTasksObject:)
-    @NSManaged func removeFromTasks(_ value: Task)
+    @NSManaged public func removeFromTasks(_ value: Task)
 
     @objc(addTasks:)
-    @NSManaged func addToTasks(_ values: NSSet)
+    @NSManaged public func addToTasks(_ values: NSSet)
 
     @objc(removeTasks:)
-    @NSManaged func removeFromTasks(_ values: NSSet)
+    @NSManaged public func removeFromTasks(_ values: NSSet)
 
 }
 

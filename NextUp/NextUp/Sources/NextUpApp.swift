@@ -9,15 +9,16 @@ import SwiftUI
 
 @main
 struct NextUpApp: App {
+    /*
     @State static var isPresented = true
     //var body: some Scene {
         //WindowGroup {
-    let todoList = TodoList(color: "red", name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
-
+    let todoList = TodoList(redValue: 0.0, greenValue: 0.0, blueValue: 0.0, name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
+    */
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                TaskAddView(isPresented: NextUpApp.$isPresented, viewModel: AddTaskViewModel(todoList: todoList, taskRepository: Injector.shared.taskRepository))
+                Injector.shared.viewFactory.noTodoListsView()
             }
         }
     }

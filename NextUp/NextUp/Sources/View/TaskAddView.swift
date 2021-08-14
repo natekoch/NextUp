@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreGraphics
 
 struct TaskAddView: View {
     var body: some View {
@@ -63,7 +64,7 @@ struct TaskAddView_Previews: PreviewProvider {
     @State static var isPresented = true
 
     static var previews: some View {
-        let todoList = TodoList(color: "red", name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
+        let todoList = TodoList(redValue: 0.0, greenValue: 0.0, blueValue: 0.0, name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
 
         return NavigationView {
             TaskAddView(isPresented: $isPresented, viewModel: AddTaskViewModel(todoList: todoList, taskRepository: Injector.shared.taskRepository))
