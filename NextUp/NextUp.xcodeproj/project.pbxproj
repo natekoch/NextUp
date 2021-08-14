@@ -12,6 +12,9 @@
 		4784F09F26C7464F00B01832 /* NoTodoListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F09E26C7464F00B01832 /* NoTodoListsView.swift */; };
 		4784F0A226C749D900B01832 /* TodoListAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F0A126C749D900B01832 /* TodoListAddView.swift */; };
 		4784F0A426C74C4200B01832 /* TodoListAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F0A326C74C4200B01832 /* TodoListAddViewModel.swift */; };
+		4784F0AC26C81EBB00B01832 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F0AB26C81EBB00B01832 /* SettingsViewModel.swift */; };
+		4784F0AE26C8209700B01832 /* TodoListEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F0AD26C8209700B01832 /* TodoListEditViewModel.swift */; };
+		4784F0B026C820A600B01832 /* TodoListEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F0AF26C820A600B01832 /* TodoListEditView.swift */; };
 		479922BB26B854E600CB5919 /* NextUpApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479922BA26B854E600CB5919 /* NextUpApp.swift */; };
 		479922BF26B854E800CB5919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 479922BE26B854E800CB5919 /* Assets.xcassets */; };
 		479922C226B854E800CB5919 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 479922C126B854E800CB5919 /* Preview Assets.xcassets */; };
@@ -60,6 +63,9 @@
 		4784F09E26C7464F00B01832 /* NoTodoListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoListsView.swift; sourceTree = "<group>"; };
 		4784F0A126C749D900B01832 /* TodoListAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListAddView.swift; sourceTree = "<group>"; };
 		4784F0A326C74C4200B01832 /* TodoListAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListAddViewModel.swift; sourceTree = "<group>"; };
+		4784F0AB26C81EBB00B01832 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		4784F0AD26C8209700B01832 /* TodoListEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListEditViewModel.swift; sourceTree = "<group>"; };
+		4784F0AF26C820A600B01832 /* TodoListEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListEditView.swift; sourceTree = "<group>"; };
 		479922B726B854E600CB5919 /* NextUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NextUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		479922BA26B854E600CB5919 /* NextUpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextUpApp.swift; sourceTree = "<group>"; };
 		479922BE26B854E800CB5919 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -180,6 +186,7 @@
 				47BE11C526BE15650067AE26 /* TaskEditView.swift */,
 				4784F09E26C7464F00B01832 /* NoTodoListsView.swift */,
 				4784F0A126C749D900B01832 /* TodoListAddView.swift */,
+				4784F0AF26C820A600B01832 /* TodoListEditView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -192,6 +199,8 @@
 				4784F09A26C6566800B01832 /* EditTaskViewModel.swift */,
 				4784F09C26C7273600B01832 /* TaskViewModel.swift */,
 				4784F0A326C74C4200B01832 /* TodoListAddViewModel.swift */,
+				4784F0AB26C81EBB00B01832 /* SettingsViewModel.swift */,
+				4784F0AD26C8209700B01832 /* TodoListEditViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -406,8 +415,10 @@
 				4799232226BCBB7A00CB5919 /* Task.swift in Sources */,
 				479922C726B854E800CB5919 /* NextUp.xcdatamodeld in Sources */,
 				4799232326BCBB7A00CB5919 /* Task+CoreDataProperties.swift in Sources */,
+				4784F0AE26C8209700B01832 /* TodoListEditViewModel.swift in Sources */,
 				479922F926BA557D00CB5919 /* TodoListView.swift in Sources */,
 				479922FB26BAF94C00CB5919 /* TaskAddView.swift in Sources */,
+				4784F0AC26C81EBB00B01832 /* SettingsViewModel.swift in Sources */,
 				4784F0A226C749D900B01832 /* TodoListAddView.swift in Sources */,
 				4784F09F26C7464F00B01832 /* NoTodoListsView.swift in Sources */,
 				47BE11CD26C393AA0067AE26 /* TodoListViewModel.swift in Sources */,
@@ -422,6 +433,7 @@
 				479922F726BA455000CB5919 /* TaskView.swift in Sources */,
 				4799232526BCBB7A00CB5919 /* TodoList+CoreDataProperties.swift in Sources */,
 				47BE11C026BCCD510067AE26 /* ViewFactory.swift in Sources */,
+				4784F0B026C820A600B01832 /* TodoListEditView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

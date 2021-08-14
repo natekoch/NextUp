@@ -65,7 +65,7 @@ struct TodoListView: View {
 
 struct TodoListView_Previews: PreviewProvider {
     static var previews: some View {
-        let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
+        let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", orderIndex: 0, context: Injector.shared.persistentContainer.viewContext)
         
         let _ = Task(date: nil, name: "Example Task 1", orderIndex: 0, weatherEnabled: true, todoList: todoList, context: Injector.shared.persistentContainer.viewContext)
         

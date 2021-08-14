@@ -16,7 +16,7 @@ struct NextUpApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                Injector.shared.viewFactory.noTodoListsView()
+                Injector.shared.viewFactory.settingsView()
             }
         }
     }

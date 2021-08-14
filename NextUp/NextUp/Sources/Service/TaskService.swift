@@ -18,7 +18,9 @@ class TaskService : TaskRepository {
         let redValue = Float(color.components?[0] ?? 0.0)
         let greenValue = Float(color.components?[1] ?? 0.0)
         let blueValue = Float(color.components?[2] ?? 0.0)
-        _ = TodoList(redValue: redValue, greenValue: greenValue, blueValue: blueValue, name: name, context: persistentContainer.viewContext)
+        let fetchRequest: NSFetchRequest<TodoList> = TodoList.fetchRequest()
+        let todoLists = (try? persistentContainer.viewContext.fetch(fetchRequest)) ?? []
+        _ = TodoList(redValue: redValue, greenValue: greenValue, blueValue: blueValue, name: name, orderIndex: Int64(todoLists.count),context: persistentContainer.viewContext)
         
         saveViewContext()
     }
@@ -31,6 +33,13 @@ class TaskService : TaskRepository {
     
     func delete(_ todoList: TodoList) {
         persistentContainer.viewContext.delete(todoList)
+        
+        let fetchRequest: NSFetchRequest<TodoList> = TodoList.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "orderIndex > %@", todoList.orderIndex as NSNumber, todoList)
+        let results = (try? persistentContainer.viewContext.fetch(fetchRequest)) ?? []
+        for todoListToAdjust in results {
+            todoListToAdjust.orderIndex -= 1
+        }
         
         saveViewContext()
     }
@@ -60,7 +69,7 @@ class TaskService : TaskRepository {
     
     func todoListResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<TodoList>? {
         let fetchRequest: NSFetchRequest<TodoList> = TodoList.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \TodoList.name, ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \TodoList.orderIndex, ascending: true)]
 
         return createResultsController(for: delegate, fetchRequest: fetchRequest)
     }

@@ -23,6 +23,11 @@ struct TaskView: View {
                 isActive: $shouldSkipTask,
                 label: {}).hidden()
             
+            NavigationLink(
+                destination: viewFactory.settingsView(),
+                isActive: $shouldNavigateToSettings,
+                label: {}).hidden()
+            
             VStack {
                 Spacer()
                 Text("Next Up:")
@@ -80,7 +85,7 @@ struct TaskView: View {
             }
             ToolbarItemGroup(placement: .bottomBar) {
                 Button(action: {
-                    
+                    shouldNavigateToSettings = true
                 }, label: {
                     Image(systemName: "gearshape")
                         .font(Font.body)
@@ -120,6 +125,7 @@ struct TaskView: View {
     // MARK: Properties
     @State private var shouldNavigateToEditTask = false
     @State private var shouldSkipTask = false
+    @State private var shouldNavigateToSettings = false
     
     @Binding private var isPresented: Bool
     @ObservedObject private var viewModel: TaskViewModel
@@ -135,7 +141,7 @@ struct TaskView_Previews: PreviewProvider {
     @State static var isPresented = false
 
     static var previews: some View {
-        let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", context: Injector.shared.persistentContainer.viewContext)
+        let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", orderIndex: 0, context: Injector.shared.persistentContainer.viewContext)
         
         let task = Task(date: Date(), name: "Preview Task", orderIndex: 0, weatherEnabled: false, todoList: todoList, context: Injector.shared.persistentContainer.viewContext)
         return NavigationView {

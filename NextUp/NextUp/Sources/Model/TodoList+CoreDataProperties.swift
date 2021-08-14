@@ -20,6 +20,7 @@ extension TodoList {
     @NSManaged public var name: String
     @NSManaged public var blueValue: Float
     @NSManaged public var greenValue: Float
+    @NSManaged public var orderIndex: Int64
     @NSManaged public var tasks: NSSet?
 
 }
