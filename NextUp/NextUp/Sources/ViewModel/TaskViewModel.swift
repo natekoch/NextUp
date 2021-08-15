@@ -13,15 +13,20 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
     
     // MARK: Actions
     func completeTask() {
-        self.taskRepository.delete(self.tasks[0], from: self.currentTodoList!)
-        self.currentTask = self.tasks[0]
+        if self.tasks.count != 0 {
+            self.taskRepository.delete(self.tasks[0], from: self.currentTodoList!)
+        }
+        //if self.tasks.count != 0 {
+            //self.currentTask = self.tasks[0]
+        //}
     }
     
     func skipTask() {
         if self.tasks[0].orderIndex+1 != self.tasks.count {
             self.tasks[0].orderIndex += 1
             self.tasks[1].orderIndex -= 1
-            self.currentTask = self.tasks[1]
+            
+            //self.currentTask = self.tasks[0]
         }
         
         // TODO: probably want to go to new screen
@@ -29,11 +34,11 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
     
     func changeTodoList() {
         if self.todoLists[0].orderIndex+1 != self.todoLists.count {
-            self.todoLists[0].orderIndex += 1
-            self.todoLists[1].orderIndex -= 1
-            self.currentTodoList = self.todoLists[0]
-            self.taskResultsController = self.taskRepository.taskResultsController(for: self.currentTodoList!, with: self)
-            print("Changed")
+            self.todoLists[self.todoLists.count-1].orderIndex = 0
+            for index in 1...todoLists.count-1 {
+                todoLists[index].orderIndex += 1
+            }
+            print("Current To Do List \(currentTask?.name ?? "no name change todolist")")
         }
     }
     
@@ -50,16 +55,34 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
         super.init()
         
         todoListResultsController = self.taskRepository.todoListResultsController(with: self)
+        //if self.todoLists.count != 0 {
+            //self.currentTodoList = todoLists[0]
+        if !noTodoLists {
+            taskResultsController = self.taskRepository.taskResultsController(for: self.currentTodoList!, with: self)
+        }
         
-        self.currentTodoList = todoLists[0]
-        
-        taskResultsController = self.taskRepository.taskResultsController(for: self.currentTodoList!, with: self)
-    
-        self.currentTask = tasks[0]
+        //if self.tasks.count != 0 {
+            //self.currentTask = tasks[0]
+        //}
     }
  
     // MARK: Properties
-    var currentTask: Task? = nil
+    
+    var currentTask: Task? {
+        if tasks.count != 0 {
+            return tasks[0]
+        } else {
+            return nil
+        }
+    }
+    
+    var currentTodoList: TodoList? {
+        if todoLists.count != 0 {
+            return todoLists[0]
+        } else {
+            return nil
+        }
+    }
     
     var todoListResultsController: NSFetchedResultsController<TodoList>? = nil
     
@@ -73,8 +96,14 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
         taskResultsController?.fetchedObjects ?? []
     }
     
-    var currentTodoList: TodoList? = nil
-    var currentTodoListIndex = 0
+    var noTasks: Bool {
+        tasks.count == 0
+    }
+    
+    var noTodoLists: Bool {
+        todoLists.count == 0
+    }
+    
     
     @Published var weather: String
     

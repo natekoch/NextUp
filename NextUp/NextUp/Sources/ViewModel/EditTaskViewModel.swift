@@ -28,7 +28,7 @@ class EditTaskViewModel : ObservableObject {
         self.name = task.name
         self.date = task.date ?? Date()
         self.weatherEnabled = task.weatherEnabled
-        self.dateEnabled = task.date != nil
+        self.dateEnabled = task.dateEnabled
     }
     
     

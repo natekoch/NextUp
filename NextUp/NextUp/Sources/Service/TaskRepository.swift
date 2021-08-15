@@ -12,7 +12,7 @@ import CoreGraphics
 protocol TaskRepository {
     func addTodoList(withName name: String, withColor color: CGColor)
     
-    func addTask(to todoList: TodoList, name: String, date: Date?, weatherEnabled: Bool)
+    func addTask(to todoList: TodoList, name: String, date: Date?, weatherEnabled: Bool, dateEnabled: Bool)
     
     func delete(_ todoList: TodoList)
     

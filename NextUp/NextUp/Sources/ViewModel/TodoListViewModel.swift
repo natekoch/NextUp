@@ -35,6 +35,19 @@ class TodoListViewModel: NSObject, ObservableObject, NSFetchedResultsControllerD
         }
     }
     
+    // https://stackoverflow.com/a/62239979/15939278
+    func move(fromOffsets: IndexSet, toOffset: Int) {
+        var revisedTasks: [ Task ] = tasks.map { $0 }
+        
+        revisedTasks.move(fromOffsets: fromOffsets, toOffset: toOffset)
+        
+        for reverseIndex in stride(from: revisedTasks.count-1,
+                                   through: 0,
+                                   by: -1) {
+            revisedTasks[reverseIndex].orderIndex = Int64(reverseIndex)
+        }
+    }
+    
     // MARK: NSFetchedResultsController
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         objectWillChange.send()

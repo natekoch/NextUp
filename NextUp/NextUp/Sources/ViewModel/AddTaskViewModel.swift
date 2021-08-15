@@ -15,7 +15,7 @@ class AddTaskViewModel : ObservableObject {
             return
         }
         
-        taskRepository.addTask(to: todoList, name: name, date: date, weatherEnabled: weatherEnabled)
+        taskRepository.addTask(to: todoList, name: name, date: date, weatherEnabled: weatherEnabled, dateEnabled: dateEnabled)
     }
     
     

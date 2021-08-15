@@ -14,34 +14,61 @@ struct TaskView: View {
     var body: some View {
         ZStack {
             NavigationLink(
-                destination: viewFactory.taskEditView(isPresented: $shouldNavigateToEditTask, task: viewModel.currentTask!),
-                isActive: $shouldNavigateToEditTask,
+                destination: viewFactory.todoListAddView(isPresented: $noTodoLists),
+                isActive: $noTodoLists,
+                label: {}).hidden()
+            if (!noTodoLists) {
+                NavigationLink(
+                    destination: viewFactory.taskAddView(isPresented: $noTasks, todoList: viewModel.currentTodoList!),
+                    isActive: $noTasks,
+                    label: {}).hidden()
+                
+                NavigationLink(destination: viewFactory.todoListView(todoList: viewModel.currentTodoList!), isActive: $shouldNavigateToTodoList, label: {}).hidden()
+                
+                if (!noTasks) {
+                    NavigationLink(
+                        destination: viewFactory.taskEditView(isPresented: $shouldNavigateToEditTask, task: viewModel.currentTask!),
+                        isActive: $shouldNavigateToEditTask,
+                        label: {}).hidden()
+                }
+                
+            }
+            /*NavigationLink(
+                destination: viewFactory.todoListAddView(isPresented: $shouldNavigateToAddTodoList),
+                isActive: $shouldNavigateToAddTodoList,
                 label: {}).hidden()
             
-            NavigationLink(destination: viewFactory.todoListView(todoList: viewModel.currentTodoList!), isActive: $shouldNavigateToTodoList, label: {}).hidden()
+            NavigationLink(
+                destination: viewFactory.taskAddView(isPresented: $viewModel.$shouldNavigateToAddTask, todoList: viewModel.currentTodoList!),
+                isActive: $viewModel.$shouldNavigateToAddTask,
+                label: {}).hidden()*/
             
             NavigationLink(
                 destination: viewFactory.settingsView(),
                 isActive: $shouldNavigateToSettings,
                 label: {}).hidden()
            
-            
-            
             VStack {
                 Spacer()
                 Text("Next Up:")
                     .bold()
                     .font(.system(size: 20))
-                Text(self.viewModel.currentTask!.name)
-                    .bold()
-                    .padding(.top)
-                    .font(.system(size: 30))
-                    .foregroundColor(self.color)
-                Text(displayDateString)
-                    .padding(.top)
-                HStack {
-                    Image(systemName: "cloud.sun.rain").padding(.vertical)
-                    Text("78*").padding(.vertical)
+                if (!noTasks) {
+                    Text(self.viewModel.currentTask!.name)
+                        .bold()
+                        .padding(.top)
+                        .font(.system(size: 30))
+                        .foregroundColor(self.color)
+                }
+                if (viewModel.currentTask!.dateEnabled) {
+                    Text(displayDateString)
+                        .padding(.top)
+                }
+                if (viewModel.currentTask!.weatherEnabled) {
+                    HStack {
+                        Image(systemName: "cloud.sun.rain").padding(.vertical)
+                        Text("78*").padding(.vertical)
+                    }
                 }
                 Button(action: {
                     viewModel.completeTask()
@@ -49,7 +76,7 @@ struct TaskView: View {
                     Image(systemName: "checkmark.circle.fill").resizable().frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(.green)
                         
                 })
-                .padding(.bottom)
+                .padding(.vertical)
                 .font(.system(size: 20))
                 Button(action: {
                     viewModel.skipTask()
@@ -58,7 +85,7 @@ struct TaskView: View {
                 })
                 Spacer()
             }.gesture(drag)
-        }.navigationTitle(self.viewModel.currentTodoList!.name)
+        }.navigationTitle(self.viewModel.currentTodoList?.name ?? "No Name")
         .toolbar(content: {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 HStack {
@@ -105,10 +132,11 @@ struct TaskView: View {
                 let verticalAmount = value.translation.height as CGFloat
                 
                 if abs(horizontalAmount) > abs(verticalAmount) {
-                    print(horizontalAmount < 0 ? viewModel.changeTodoList() : "right swipe")
+                    horizontalAmount < 0 ? viewModel.changeTodoList() : print("no change")
                 }
             }
     }
+    
     
     
     // MARK: Initialization
@@ -117,17 +145,23 @@ struct TaskView: View {
         self.viewModel = viewModel
         self.viewFactory = viewFactory
         
-        self.dateFormatter.locale = Locale(identifier: "en_US")
+        //self.dateFormatter.locale = Locale(identifier: "en_US")
         self.dateFormatter.dateStyle = .medium
         self.dateFormatter.timeStyle = .short
         
-        
+        self.noTasks = viewModel.noTasks
+        self.noTodoLists = viewModel.noTodoLists
     }
     
     // MARK: Properties
     @State private var shouldNavigateToEditTask = false
     @State private var shouldNavigateToSettings = false
     @State private var shouldNavigateToTodoList = false
+    //@State private var shouldNavigateToAddTodoList = false
+    //@State private var shouldNavigateToAddTask = false
+    
+    @State private var noTasks: Bool
+    @State private var noTodoLists: Bool
     
     //@State private var isDragging = false
     
@@ -137,7 +171,7 @@ struct TaskView: View {
     private let viewFactory: ViewFactory
     
     private var displayDateString: String {
-        if let displayDate = viewModel.currentTask!.date {
+        if let displayDate = viewModel.currentTask?.date {
             return self.dateFormatter.string(from: displayDate)
         } else {
             return ""
@@ -147,7 +181,7 @@ struct TaskView: View {
     private let dateFormatter: DateFormatter = DateFormatter()
     
     private var color: Color {
-        return Color(.sRGB, red: Double(viewModel.currentTask!.todoList.redValue), green: Double(viewModel.currentTask!.todoList.greenValue), blue: Double(viewModel.currentTask!.todoList.blueValue), opacity: 100)
+        return Color(.sRGB, red: Double(viewModel.currentTask?.todoList.redValue ?? 0), green: Double(viewModel.currentTask?.todoList.greenValue ?? 0), blue: Double(viewModel.currentTask?.todoList.blueValue ?? 0), opacity: 100)
     }
 }
 
@@ -157,7 +191,7 @@ struct TaskView_Previews: PreviewProvider {
     static var previews: some View {
         let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", orderIndex: 0, context: Injector.shared.persistentContainer.viewContext)
         
-        _ = Task(date: Date(), name: "Preview Task", orderIndex: 0, weatherEnabled: false, todoList: todoList, context: Injector.shared.persistentContainer.viewContext)
+        _ = Task(date: Date(), name: "Preview Task", orderIndex: 0, weatherEnabled: false, todoList: todoList, dateEnabled: true, context: Injector.shared.persistentContainer.viewContext)
         return NavigationView {
             Injector.shared.viewFactory.taskView(isPresented: $isPresented)
         }

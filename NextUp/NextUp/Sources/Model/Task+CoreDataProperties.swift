@@ -20,6 +20,7 @@ extension Task {
     @NSManaged public var name: String
     @NSManaged public var orderIndex: Int64
     @NSManaged public var weatherEnabled: Bool
+    @NSManaged public var dateEnabled: Bool
     @NSManaged public var todoList: TodoList
 
 }

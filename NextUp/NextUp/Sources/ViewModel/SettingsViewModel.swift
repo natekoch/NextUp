@@ -20,6 +20,19 @@ class SettingsViewModel : NSObject, ObservableObject, NSFetchedResultsController
         self.taskRepository.delete(todoList)
     }
     
+    // https://stackoverflow.com/a/62239979/15939278
+    func move(fromOffsets: IndexSet, toOffset: Int) {
+        var revisedTodoLists: [ TodoList ] = todoLists.map { $0 }
+        
+        revisedTodoLists.move(fromOffsets: fromOffsets, toOffset: toOffset)
+        
+        for reverseIndex in stride(from: revisedTodoLists.count-1,
+                                   through: 0,
+                                   by: -1) {
+            revisedTodoLists[reverseIndex].orderIndex = Int64(reverseIndex)
+        }
+    }
+    
     // MARK: NSFetchedResultsController
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         objectWillChange.send()

@@ -71,7 +71,7 @@ struct TaskEditView_Previews: PreviewProvider {
     static var previews: some View {
         let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", orderIndex: 0, context: Injector.shared.persistentContainer.viewContext)
 
-        let task = Task(date: nil, name: "Example Task", orderIndex: 1, weatherEnabled: true, todoList: todoList, context: Injector.shared.persistentContainer.viewContext)
+        let task = Task(date: nil, name: "Example Task", orderIndex: 1, weatherEnabled: true, todoList: todoList, dateEnabled: true, context: Injector.shared.persistentContainer.viewContext)
 
         return NavigationView {
             TaskEditView(isPresented: $isPresented, viewModel: EditTaskViewModel(task: task, taskRepository: Injector.shared.taskRepository))

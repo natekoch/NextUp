@@ -23,11 +23,14 @@ struct SettingsView: View {
                             Text(todoList.name)
                         })
                 }.onDelete(perform: { indexSet in
-                    viewModel.deleteTodoList(at: indexSet)
-                })
-                //.onMove(perform: { indices, newOffset in
-                    ///*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/})
-            }
+                    viewModel.deleteTodoList(at: indexSet)})
+                .onMove(perform: onMove)
+                .onLongPressGesture {
+                    withAnimation {
+                        self.isEditable = true
+                    }
+                }
+            }.environment(\.editMode, isEditable ? .constant(.active) : .constant(.inactive))
         }.navigationBarTitle("Settings")
         .toolbar(content: {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -41,7 +44,15 @@ struct SettingsView: View {
         })
     }
         
-
+    private func onMove(source: IndexSet, destination: Int) {
+        viewModel.move(fromOffsets: source, toOffset: destination)
+        
+        //https://stackoverflow.com/a/57737959/15939278
+        withAnimation {
+            isEditable = false
+        }
+    }
+    
     private func addButton() -> some View {
         Button(action: {
             shouldNavigateToAddTodoList = true
@@ -60,6 +71,8 @@ struct SettingsView: View {
     
     @State private var shouldNavigateToEditTodoList = false
     @State private var shouldNavigateToAddTodoList = false
+    
+    @State private var isEditable = false
     
     @ObservedObject private var viewModel: SettingsViewModel
     

@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Task" representedClassName=".Task" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="orderIndex" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="weatherEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -16,7 +17,7 @@
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Task" inverseName="todoList" inverseEntity="Task"/>
     </entity>
     <elements>
-        <element name="Task" positionX="-63" positionY="-9" width="128" height="104"/>
+        <element name="Task" positionX="-63" positionY="-9" width="128" height="119"/>
         <element name="TodoList" positionX="145.1582641601562" positionY="20.75827026367188" width="128" height="119"/>
     </elements>
 </model>

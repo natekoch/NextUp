@@ -25,8 +25,8 @@ class TaskService : TaskRepository {
         saveViewContext()
     }
     
-    func addTask(to todoList: TodoList, name: String, date: Date?, weatherEnabled: Bool) {
-        _ = Task(date: date, name: name, orderIndex: Int64(todoList.tasks?.count ?? 0), weatherEnabled: weatherEnabled, todoList: todoList, context: persistentContainer.viewContext)
+    func addTask(to todoList: TodoList, name: String, date: Date?, weatherEnabled: Bool, dateEnabled: Bool) {
+        _ = Task(date: date, name: name, orderIndex: Int64(todoList.tasks?.count ?? 0), weatherEnabled: weatherEnabled, todoList: todoList, dateEnabled: dateEnabled, context: persistentContainer.viewContext)
         
         saveViewContext()
     }
@@ -100,11 +100,11 @@ class TaskService : TaskRepository {
         
         persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
             self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
-            
+            /*
             let context = self.persistentContainer.newBackgroundContext()
             context.perform {
             
-                let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", orderIndex: 0, context: context)
+                let todoList = TodoList(redValue: 0.5, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", orderIndex: 0, context: context)
                 
                 let _ = Task(date: Date(), name: "Task 1", orderIndex: 0, weatherEnabled: false, todoList: todoList, context: context)
                 
@@ -112,7 +112,7 @@ class TaskService : TaskRepository {
                 
                 try! context.save()
             }
-
+            */
         })
     }
     
