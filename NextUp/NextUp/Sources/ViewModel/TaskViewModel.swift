@@ -16,12 +16,15 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
         if !self.tasks.isEmpty {
             self.taskRepository.delete(self.tasks[0], from: self.currentTodoList!)
         }
+        updateCurrentTask()
+        updateCurrentTodoList()
     }
     
     func skipTask() {
         if !self.tasks.isEmpty && self.tasks[0].orderIndex+1 != self.tasks.count {
             self.tasks[0].orderIndex += 1
             self.tasks[1].orderIndex -= 1
+            updateCurrentTask()
         }
     }
     
@@ -32,6 +35,24 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
                 todoLists[index].orderIndex -= 1
             }
             print("Current To Do List \(currentTodoList?.name ?? "no name change todolist")")
+        }
+        updateCurrentTodoList()
+        updateCurrentTask()
+    }
+    
+    func updateCurrentTask() {
+        if !noTasks {
+            currentTask = tasks[0]
+        } else {
+            currentTask = nil
+        }
+    }
+    
+    func updateCurrentTodoList() {
+        if !noTodoLists {
+            currentTodoList = todoLists[0]
+        } else {
+            currentTodoList = nil
         }
     }
     
@@ -44,35 +65,21 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
     init(taskRepository: TaskRepository) {
         self.taskRepository = taskRepository
         self.weather = "Weather"
+        
+        self.currentTask = nil
+        self.currentTodoList = nil
+        
         super.init()
         
-        //todoListResultsController = self.taskRepository.todoListResultsController(with: self)
-        
-        //if !noTodoLists {
-            //askResultsController = self.taskRepository.taskResultsController(for: self.currentTodoList!, with: self)
-       //}
+        updateCurrentTodoList()
+        updateCurrentTask()
     }
  
     // MARK: Properties
     
-    var currentTask: Task? {
-        if !noTasks {
-            return tasks[0]
-        } else {
-            return nil
-        }
-    }
-    
-    var currentTodoList: TodoList? {
-        if !noTodoLists {
-            return todoLists[0]
-        } else {
-            return nil
-        }
-    }
-    
     var todoListResultsController: NSFetchedResultsController<TodoList>? {
-        self.taskRepository.todoListResultsController(with: self)
+        get {self.taskRepository.todoListResultsController(with: self)}
+        set {}
     }
     
     var taskResultsController: NSFetchedResultsController<Task>? {
@@ -82,6 +89,9 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
             return nil
         }
     }
+    
+    @Published var currentTask: Task?
+    @Published var currentTodoList: TodoList?
     
     var todoLists: Array<TodoList> {
         todoListResultsController?.fetchedObjects ?? []
@@ -101,12 +111,11 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
     
     var noTodoLists: Bool {
         get {
-            todoLists.count == 0
+            todoLists.isEmpty
         }
         set {
         }
     }
-    
     
     @Published var weather: String
     

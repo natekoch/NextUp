@@ -5,6 +5,7 @@
 //  Created by Nate Koch on 8/4/21.
 //
 
+import UserNotifications
 import SwiftUI
 
 struct SettingsView: View {
@@ -14,23 +15,36 @@ struct SettingsView: View {
                 destination: viewFactory.todoListAddView(isPresented: $shouldNavigateToAddTodoList),
                 isActive: $shouldNavigateToAddTodoList,
                 label: {}).hidden()
-            List {
-                ForEach(viewModel.todoLists) {
-                    todoList in
-                    NavigationLink(
-                        destination: viewFactory.todoListEditView(isPresented: $shouldNavigateToEditTodoList, todoList: todoList),
-                        label: {
-                            Text(todoList.name)
-                        })
-                }.onDelete(perform: { indexSet in
-                    viewModel.deleteTodoList(at: indexSet)})
-                .onMove(perform: onMove)
-                .onLongPressGesture {
-                    withAnimation {
-                        self.isEditable = true
+            VStack {
+                List {
+                    ForEach(viewModel.todoLists) {
+                        todoList in
+                        NavigationLink(
+                            destination: viewFactory.todoListEditView(isPresented: $shouldNavigateToEditTodoList, todoList: todoList),
+                            label: {
+                                Text(todoList.name)
+                            })
+                    }.onDelete(perform: { indexSet in
+                        viewModel.deleteTodoList(at: indexSet)})
+                    .onMove(perform: onMove)
+                    .onLongPressGesture {
+                        withAnimation {
+                            self.isEditable = true
+                        }
                     }
+                }.environment(\.editMode, isEditable ? .constant(.active) : .constant(.inactive))
+                Button("Notifications Permission") {
+                    UNUserNotificationCenter.current()
+                        .requestAuthorization(options: [.alert, .badge, .sound]) {
+                            success, error in
+                            if success {
+                                print("Notifcations Enabled")
+                            } else if let error = error {
+                                print(error.localizedDescription)
+                            }
+                        }
                 }
-            }.environment(\.editMode, isEditable ? .constant(.active) : .constant(.inactive))
+            }
         }.navigationBarTitle("Settings")
         .toolbar(content: {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -60,8 +74,6 @@ struct SettingsView: View {
             Image(systemName: "plus.square.fill").imageScale(.large)
         })
     }
-        
-        
     
     
     init(viewModel: SettingsViewModel, viewFactory: ViewFactory) {

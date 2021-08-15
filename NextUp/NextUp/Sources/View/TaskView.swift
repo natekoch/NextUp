@@ -21,11 +21,11 @@ struct TaskView: View {
             viewFactory.taskAddView(isPresented: $viewModel.noTasks, todoList: viewModel.currentTodoList!)
         } else {
             ZStack {
-                
                 // To Do List button Navigation
                 NavigationLink(destination: viewFactory.todoListView(todoList: viewModel.currentTodoList!), isActive: $shouldNavigateToTodoList, label: {}).hidden()
                 
                 // Edit Task Button Navigation
+                // TODO: fix error here when nil
                 NavigationLink(
                     destination: viewFactory.taskEditView(isPresented: $shouldNavigateToEditTask, task: viewModel.currentTask!),
                     isActive: $shouldNavigateToEditTask,
@@ -43,7 +43,7 @@ struct TaskView: View {
                         .bold()
                         .font(.system(size: 20))
                     if (!noTasks) {
-                        Text(self.taskName)
+                        Text(self.viewModel.currentTask?.name ?? "")
                             .bold()
                             .font(.system(size: 30))
                             .foregroundColor(self.color)
@@ -52,13 +52,12 @@ struct TaskView: View {
                         Text(displayDateString)
                     }
                     if (viewModel.currentTask?.weatherEnabled ?? false) {
-                        HStack {
-                            Image(systemName: "cloud.sun.rain")
-                            Text("78*")
-                        }
+                        Text(displayTemperatureString)
                     }
                     Button(action: {
                         viewModel.completeTask()
+                        viewModel.updateCurrentTodoList()
+                        viewModel.updateCurrentTask()
                     }, label: {
                         Image(systemName: "checkmark.circle.fill").resizable().frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(.green)
                             
@@ -66,6 +65,8 @@ struct TaskView: View {
                     .font(.system(size: 20))
                     Button(action: {
                         viewModel.skipTask()
+                        viewModel.updateCurrentTodoList()
+                        viewModel.updateCurrentTask()
                     }, label: {
                         Image(systemName: "arrow.right").resizable().frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(.red)
                     })
@@ -73,7 +74,11 @@ struct TaskView: View {
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 .gesture(drag)
             }
-            .navigationTitle(self.todoListName)
+            .onAppear {
+                viewModel.updateCurrentTodoList()
+                viewModel.updateCurrentTask()
+            }
+            .navigationTitle(self.viewModel.currentTodoList?.name ?? "")
             .toolbar(content: {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     HStack {
@@ -82,6 +87,8 @@ struct TaskView: View {
                             .accessibilityHidden(true)
                         Button(action: {
                             shouldNavigateToTodoList = true
+                            viewModel.updateCurrentTodoList()
+                            viewModel.updateCurrentTask()
                         }, label: {
                             Image(systemName: "list.dash")
                                 .font(Font.body)
@@ -96,6 +103,8 @@ struct TaskView: View {
                 ToolbarItemGroup(placement: .bottomBar) {
                     Button(action: {
                         shouldNavigateToSettings = true
+                        viewModel.updateCurrentTodoList()
+                        viewModel.updateCurrentTask()
                     }, label: {
                         Image(systemName: "gearshape")
                             .font(Font.body)
@@ -105,6 +114,8 @@ struct TaskView: View {
                     Spacer()
                     Button(action: {
                         shouldNavigateToEditTask = true
+                        viewModel.updateCurrentTodoList()
+                        viewModel.updateCurrentTask()
                     }, label: {
                         Text("Edit")
                     })
@@ -165,15 +176,21 @@ struct TaskView: View {
         }
     }
     
-    var taskName: String {
-        self.viewModel.currentTask?.name ?? ""
-    }
-    
-    var todoListName: String {
-        self.viewModel.currentTodoList?.name ?? ""
-    }
-    
     private let dateFormatter: DateFormatter = DateFormatter()
+    
+    private let measurementFormatter: MeasurementFormatter = MeasurementFormatter()
+    
+    private var temperature: Measurement<UnitTemperature> {
+        Measurement(value: 69, unit: UnitTemperature.fahrenheit)
+    }
+    
+    private var displayTemperatureString: String {
+        if let _ = viewModel.currentTask?.weatherEnabled {
+            return self.measurementFormatter.string(from: temperature)
+        } else {
+            return ""
+        }
+    }
     
     private var color: Color {
         return Color(.sRGB,

@@ -16,6 +16,25 @@ class AddTaskViewModel : ObservableObject {
         }
         
         taskRepository.addTask(to: todoList, name: name, date: date, weatherEnabled: weatherEnabled, dateEnabled: dateEnabled)
+        
+        if dateEnabled {
+            scheduleNotification()
+        }
+    }
+    
+    private func scheduleNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = name
+        content.subtitle = "Due Now"
+        content.sound = UNNotificationSound.default
+        
+        let dateComponents = Calendar.current.dateComponents([.hour,.minute,.day,.month,.year], from: self.date)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request)
     }
     
     
