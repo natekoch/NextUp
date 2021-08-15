@@ -40,6 +40,14 @@ struct TodoListView: View {
             ToolbarItem(placement: .navigationBarLeading) {
                 Color.clear.hidden()
             }
+            ToolbarItemGroup(placement: .bottomBar) {
+                Spacer()
+                Button(action: {
+                    viewModel.randomizeOrder()
+                }, label: {
+                    Text("Randomize")
+                })
+            }
         })
     }
     

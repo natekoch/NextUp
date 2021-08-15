@@ -20,6 +20,21 @@ class TodoListViewModel: NSObject, ObservableObject, NSFetchedResultsControllerD
         self.taskRepository.delete(task, from: self.todoList)
     }
 
+    func randomizeOrder() {
+        var indexes: Array<Int> = []
+        var randomIndex = 0
+        if tasks.count != 0 || tasks.count != 1 {
+            for i in 0..<tasks.count {
+                indexes.append(i)
+            }
+            for task in tasks {
+                randomIndex = indexes.randomElement() ?? 0
+                task.orderIndex = Int64(randomIndex)
+                indexes.remove(at: indexes.firstIndex(of: randomIndex) ?? 0)
+            }
+        }
+    }
+    
     // MARK: NSFetchedResultsController
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         objectWillChange.send()
