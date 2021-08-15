@@ -22,6 +22,7 @@ struct TodoListView: View {
                             VStack{
                                 Text(task.name)
                             }
+                            Spacer()
                             Image(systemName: "line.horizontal.3")
                         }.padding(.horizontal)
                     }

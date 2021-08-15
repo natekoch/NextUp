@@ -21,8 +21,8 @@ class ViewFactory {
         TodoListView(viewModel: TodoListViewModel(todoList: todoList, taskRepository: self.taskRepository), viewFactory: self)
     }
     
-    func taskView(isPresented: Binding<Bool>, task: Task) -> TaskView {
-        TaskView(isPresented: isPresented, viewModel: TaskViewModel(task: task, taskRepository: self.taskRepository), viewFactory: self)
+    func taskView(isPresented: Binding<Bool>) -> TaskView {
+        TaskView(isPresented: isPresented, viewModel: TaskViewModel(taskRepository: self.taskRepository), viewFactory: self)
     }
     
     func todoListAddView(isPresented: Binding<Bool>) -> TodoListAddView {

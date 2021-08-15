@@ -100,6 +100,19 @@ class TaskService : TaskRepository {
         
         persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
             self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+            
+            let context = self.persistentContainer.newBackgroundContext()
+            context.perform {
+            
+                let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", orderIndex: 0, context: context)
+                
+                let _ = Task(date: Date(), name: "Task 1", orderIndex: 0, weatherEnabled: false, todoList: todoList, context: context)
+                
+                let _ = Task(date: Date(), name: "Task 2", orderIndex: 1, weatherEnabled: false, todoList: todoList, context: context)
+                
+                try! context.save()
+            }
+
         })
     }
     
