@@ -13,7 +13,6 @@ import CoreGraphics
 
 
 class TaskService : TaskRepository {
-    
     func addTodoList(withName name: String, withColor color: CGColor) {
         let redValue = Float(color.components?[0] ?? 0.0)
         let greenValue = Float(color.components?[1] ?? 0.0)

@@ -181,7 +181,7 @@ struct TaskView: View {
     private let measurementFormatter: MeasurementFormatter = MeasurementFormatter()
     
     private var temperature: Measurement<UnitTemperature> {
-        Measurement(value: 69, unit: UnitTemperature.fahrenheit)
+        Measurement(value: 80, unit: UnitTemperature.fahrenheit)
     }
     
     private var displayTemperatureString: String {
