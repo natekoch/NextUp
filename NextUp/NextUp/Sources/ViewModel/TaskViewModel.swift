@@ -13,32 +13,25 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
     
     // MARK: Actions
     func completeTask() {
-        if self.tasks.count != 0 {
+        if !self.tasks.isEmpty {
             self.taskRepository.delete(self.tasks[0], from: self.currentTodoList!)
         }
-        //if self.tasks.count != 0 {
-            //self.currentTask = self.tasks[0]
-        //}
     }
     
     func skipTask() {
-        if self.tasks[0].orderIndex+1 != self.tasks.count {
+        if !self.tasks.isEmpty && self.tasks[0].orderIndex+1 != self.tasks.count {
             self.tasks[0].orderIndex += 1
             self.tasks[1].orderIndex -= 1
-            
-            //self.currentTask = self.tasks[0]
         }
-        
-        // TODO: probably want to go to new screen
     }
     
     func changeTodoList() {
-        if self.todoLists[0].orderIndex+1 != self.todoLists.count {
-            self.todoLists[self.todoLists.count-1].orderIndex = 0
-            for index in 1...todoLists.count-1 {
-                todoLists[index].orderIndex += 1
+        if !todoLists.isEmpty && todoLists.count != 1 {
+            todoLists[0].orderIndex = Int64(todoLists.count)
+            for index in 0..<todoLists.count {
+                todoLists[index].orderIndex -= 1
             }
-            print("Current To Do List \(currentTask?.name ?? "no name change todolist")")
+            print("Current To Do List \(currentTodoList?.name ?? "no name change todolist")")
         }
     }
     
@@ -49,27 +42,21 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
     
     // MARK: Initialization
     init(taskRepository: TaskRepository) {
-        //self.task = task
         self.taskRepository = taskRepository
         self.weather = "Weather"
         super.init()
         
-        todoListResultsController = self.taskRepository.todoListResultsController(with: self)
-        //if self.todoLists.count != 0 {
-            //self.currentTodoList = todoLists[0]
-        if !noTodoLists {
-            taskResultsController = self.taskRepository.taskResultsController(for: self.currentTodoList!, with: self)
-        }
+        //todoListResultsController = self.taskRepository.todoListResultsController(with: self)
         
-        //if self.tasks.count != 0 {
-            //self.currentTask = tasks[0]
-        //}
+        //if !noTodoLists {
+            //askResultsController = self.taskRepository.taskResultsController(for: self.currentTodoList!, with: self)
+       //}
     }
  
     // MARK: Properties
     
     var currentTask: Task? {
-        if tasks.count != 0 {
+        if !noTasks {
             return tasks[0]
         } else {
             return nil
@@ -77,16 +64,24 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
     }
     
     var currentTodoList: TodoList? {
-        if todoLists.count != 0 {
+        if !noTodoLists {
             return todoLists[0]
         } else {
             return nil
         }
     }
     
-    var todoListResultsController: NSFetchedResultsController<TodoList>? = nil
+    var todoListResultsController: NSFetchedResultsController<TodoList>? {
+        self.taskRepository.todoListResultsController(with: self)
+    }
     
-    var taskResultsController: NSFetchedResultsController<Task>? = nil
+    var taskResultsController: NSFetchedResultsController<Task>? {
+        if !noTodoLists {
+            return self.taskRepository.taskResultsController(for: self.currentTodoList!, with: self)
+        } else {
+            return nil
+        }
+    }
     
     var todoLists: Array<TodoList> {
         todoListResultsController?.fetchedObjects ?? []
@@ -97,11 +92,19 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
     }
     
     var noTasks: Bool {
-        tasks.count == 0
+        get {
+            tasks.isEmpty
+        }
+        set {
+        }
     }
     
     var noTodoLists: Bool {
-        todoLists.count == 0
+        get {
+            todoLists.count == 0
+        }
+        set {
+        }
     }
     
     

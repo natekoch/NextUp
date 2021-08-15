@@ -19,21 +19,21 @@ struct RootView: View {
                 destination: viewFactory.settingsView(),
                 isActive: $shouldNavigateToSettingsView,
                 label: {}).hidden()
-            VStack {
+            VStack (alignment: .center, spacing: 30) {
                 Button(action: {
                     shouldNavigateToTaskView = true
                 }, label: {
                     Text("Next Up")
                         .bold()
                         .font(Font.system(size: 25))
-                }).padding(.bottom)
+                })
                 Button(action: {
                     shouldNavigateToSettingsView = true
                 }, label: {
                     Image(systemName: "gearshape")
                         .imageScale(.large)
-                }).padding()
-            }
+                })
+            }.padding(.bottom, 100)
         }
     }
     

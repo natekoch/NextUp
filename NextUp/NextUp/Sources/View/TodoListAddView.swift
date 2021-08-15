@@ -15,14 +15,14 @@ struct TodoListAddView: View {
             label: {}).hidden()
           */
         Form {
-            Section(header: Text("Add Todo List Name")) {
-                TextField("Todo List Name", text: $viewModel.name).accessibility(label: Text("Add Todo List Name"))
+            Section(header: Text("Add To Do List Name")) {
+                TextField("To Do List Name", text: $viewModel.name).accessibility(label: Text("Add To Do List Name"))
             }
-            Section(header: Text("Choose Todo List Color")) {
-                ColorPicker("Todo List Color", selection: $viewModel.color, supportsOpacity: false)
+            Section(header: Text("Choose To Do List Color")) {
+                ColorPicker("To Do List Color", selection: $viewModel.color, supportsOpacity: false)
             }
-        }.accessibility(label: Text("Add New Todo List Form"))
-        .navigationBarTitle("Add New Todo List")
+        }.accessibility(label: Text("Add New To Do List Form"))
+        .navigationBarTitle("Add New To Do List")
         .toolbar(content: {
             ToolbarItem(placement: .navigationBarTrailing) {
                 saveButton()

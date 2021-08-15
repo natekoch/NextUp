@@ -15,14 +15,14 @@ struct TodoListEditView: View {
             label: {}).hidden()
           */
         Form {
-            Section(header: Text("Edit Todo List Name")) {
-                TextField("Todo List Name", text: $viewModel.name).accessibility(label: Text("Change Todo List Name"))
+            Section(header: Text("Edit To Do List Name")) {
+                TextField("Todo List Name", text: $viewModel.name).accessibility(label: Text("Change To Do List Name"))
             }
-            Section(header: Text("Change Todo List Color")) {
-                ColorPicker("Todo List Color", selection: $viewModel.color, supportsOpacity: false)
+            Section(header: Text("Change To Do List Color")) {
+                ColorPicker("To Do List Color", selection: $viewModel.color, supportsOpacity: false)
             }
-        }.accessibility(label: Text("Edit Todo List Form"))
-        .navigationBarTitle("Edit Todo List")
+        }.accessibility(label: Text("Edit To Do List Form"))
+        .navigationBarTitle("Edit To Do List")
         .toolbar(content: {
             ToolbarItem(placement: .navigationBarTrailing) {
                 saveButton()
