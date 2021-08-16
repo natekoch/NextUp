@@ -59,6 +59,7 @@ class EditTaskViewModel : ObservableObject {
     @Published var date: Date
     @Published var dateEnabled: Bool
     @Published var weatherEnabled: Bool
+    
     private let taskRepository: TaskRepository
     
     var canSave: Bool {

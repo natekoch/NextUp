@@ -30,6 +30,7 @@ class TodoListEditViewModel : ObservableObject {
         self.color = CGColor(red: CGFloat(todoList.redValue), green: CGFloat(todoList.greenValue), blue: CGFloat(todoList.blueValue), alpha: 100)
     }
     
+    // MARK: Properties
     let todoList: TodoList
     
     @Published var name: String

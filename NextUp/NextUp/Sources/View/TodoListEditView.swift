@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct TodoListEditView: View {
+    // MARK: View
     var body: some View {
-        /*NavigationLink(
-            destination: viewModel.viewFactory.todoListView(todoList: viewModel.todoLists[viewModel.todoLists.count-1]),
-            isActive: $shouldNavigateToEditTodoList,
-            label: {}).hidden()
-          */
         Form {
             Section(header: Text("Edit To Do List Name")) {
                 TextField("Todo List Name", text: $viewModel.name).accessibility(label: Text("Change To Do List Name"))
@@ -35,6 +31,7 @@ struct TodoListEditView: View {
         })
     }
     
+    // MARK: Action
     private func saveButton() -> some View {
         Button(action: {
             viewModel.saveChanges()
@@ -42,25 +39,34 @@ struct TodoListEditView: View {
             shouldNavigateToEditTodoList = true
         }, label: {
             Text("Save")
-        }).disabled(!viewModel.canSave)
+        }).disabled(!viewModel.canSave).accessibilityElement()
+        .accessibilityIdentifier("Save Changes For To Do List Button")
+        .accessibilityLabel("Save Changes For To Do List")
+        .accessibility(addTraits: .isButton)
     }
     
-    //use view model instead of task repo
+    // MARK: Initialization
     init(isPresented: Binding<Bool>, viewModel: TodoListEditViewModel) {
         self._isPresented = isPresented
         self.viewModel = viewModel
     }
     
+    // MARK: Properties
     @State private var shouldNavigateToEditTodoList = false
     
     @Binding private var isPresented: Bool
+    
     @ObservedObject private var viewModel: TodoListEditViewModel
 }
-/*
+
+// MARK: Preview
 struct TodoListEditView_Previews: PreviewProvider {
     @State static var isPresented = true
     static var previews: some View {
-        //Injector.shared.viewFactory.todoListEditView(todoList: )
+        let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", orderIndex: 0, context: Injector.shared.persistentContainer.viewContext)
+        
+        return
+            Injector.shared.viewFactory.todoListEditView(isPresented: $isPresented, todoList: todoList)
     }
 }
-*/
+

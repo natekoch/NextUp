@@ -9,6 +9,7 @@ import SwiftUI
 import CoreGraphics
 
 struct TaskEditView: View {
+    // MARK: View
     var body: some View {
         VStack(alignment: .leading){
             Text("To Do List: \(viewModel.task.todoList.name)").bold().padding(.horizontal)
@@ -44,7 +45,7 @@ struct TaskEditView: View {
         })
     }
     
-    
+    // MARK: Action
     private func saveButton() -> some View {
         Button(action: {
             viewModel.saveChanges()
@@ -52,9 +53,13 @@ struct TaskEditView: View {
             isPresented = false
         }, label: {
             Text("Save")
-        }).disabled(!viewModel.canSave)
+        }).disabled(!viewModel.canSave).accessibilityElement()
+        .accessibilityIdentifier("Save Edited Task Button")
+        .accessibilityLabel("Save Edited Task")
+        .accessibility(addTraits: .isButton)
     }
     
+    // MARK: Initialization
     init(isPresented: Binding<Bool>, viewModel: EditTaskViewModel) {
         self._isPresented = isPresented
         self.viewModel = viewModel
@@ -62,12 +67,15 @@ struct TaskEditView: View {
         self.color = Color(.sRGB, red: Double(viewModel.task.todoList.redValue), green: Double(viewModel.task.todoList.greenValue), blue: Double(viewModel.task.todoList.blueValue), opacity: 100)
     }
     
+    // MARK: Properties
     @Binding private var isPresented: Bool
+    
     @ObservedObject private var viewModel: EditTaskViewModel
     
     private let color: Color
 }
 
+// MARK: Preview
 struct TaskEditView_Previews: PreviewProvider {
     @State static var isPresented = true
 

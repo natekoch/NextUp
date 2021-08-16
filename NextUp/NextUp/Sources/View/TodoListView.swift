@@ -9,7 +9,9 @@ import SwiftUI
 
 struct TodoListView: View {
     var body: some View {
+        // MARK: View
         ZStack {
+            // Add Task Navigate
             NavigationLink(
                 destination: viewFactory.taskAddView(isPresented: $shouldNavigateToAddTask, todoList: viewModel.todoList),
                 isActive: $shouldNavigateToAddTask,
@@ -33,6 +35,7 @@ struct TodoListView: View {
                         self.isEditable = true
                     }
                 }
+                .accessibilityLabel("List of Tasks in Current To Do List")
             }.environment(\.editMode, isEditable ? .constant(.active) : .constant(.inactive))
         }.navigationBarTitle(viewModel.todoList.name)
         .toolbar(content: {
@@ -50,27 +53,32 @@ struct TodoListView: View {
                     viewModel.randomizeOrder()
                 }, label: {
                     Text("Randomize")
-                })
+                }).accessibilityElement()
+                .accessibilityIdentifier("Randomize Button")
+                .accessibilityLabel("Randomize Order")
+                .accessibility(addTraits: .isButton)
             }
         })
     }
     
+    // MARK: Actions
     private func onMove(source: IndexSet, destination: Int) {
         viewModel.move(fromOffsets: source, toOffset: destination)
-        
         //https://stackoverflow.com/a/57737959/15939278
         withAnimation {
             isEditable = false
         }
     }
-
     
     private func addButton() -> some View {
         Button(action: {
             shouldNavigateToAddTask = true
         }, label: {
             Image(systemName: "plus.square.fill")
-        })
+        }).accessibilityElement()
+        .accessibilityIdentifier("Add New Task Button")
+        .accessibilityLabel("Add New Task")
+        .accessibility(addTraits: .isButton)
     }
     
     // MARK: Initialization
@@ -83,10 +91,13 @@ struct TodoListView: View {
     @State private var shouldNavigateToEditTask = false
     @State private var shouldNavigateToAddTask = false
     @State private var isEditable = false
+    
     @ObservedObject private var viewModel: TodoListViewModel
+    
     private let viewFactory: ViewFactory
 }
 
+// MARK: Preview
 struct TodoListView_Previews: PreviewProvider {
     static var previews: some View {
         let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", orderIndex: 0, context: Injector.shared.persistentContainer.viewContext)

@@ -37,10 +37,6 @@ class ViewFactory {
         SettingsView(viewModel: SettingsViewModel(taskRepository: self.taskRepository), viewFactory: self)
     }
     
-    func noTodoListsView() -> NoTodoListsView {
-        NoTodoListsView(viewFactory: self)
-    }
-    
     func rootView() -> RootView {
         RootView(viewFactory: self)
     }

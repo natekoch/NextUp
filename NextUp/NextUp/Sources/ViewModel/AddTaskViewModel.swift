@@ -55,7 +55,6 @@ class AddTaskViewModel : ObservableObject {
     
     // MARK: Properties
     let todoList: TodoList
-    
     @Published var name: String
     @Published var date: Date
     @Published var dateEnabled: Bool

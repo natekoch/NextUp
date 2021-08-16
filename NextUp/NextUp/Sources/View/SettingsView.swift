@@ -9,6 +9,7 @@ import UserNotifications
 import SwiftUI
 
 struct SettingsView: View {
+    // MARK: View
     var body: some View {
         ZStack {
             NavigationLink(
@@ -57,7 +58,8 @@ struct SettingsView: View {
             }
         })
     }
-        
+    
+    // MARK: Actions
     private func onMove(source: IndexSet, destination: Int) {
         viewModel.move(fromOffsets: source, toOffset: destination)
         
@@ -72,26 +74,29 @@ struct SettingsView: View {
             shouldNavigateToAddTodoList = true
         }, label: {
             Image(systemName: "plus.square.fill").imageScale(.large)
-        })
+        }).accessibilityElement()
+        .accessibilityIdentifier("Add To Do List Button")
+        .accessibilityLabel("Add To Do List")
+        .accessibility(addTraits: .isButton)
     }
     
-    
+    // MARK: Initialization
     init(viewModel: SettingsViewModel, viewFactory: ViewFactory) {
         self.viewModel = viewModel
         self.viewFactory = viewFactory
     }
     
+    // MARK: Properties
     @State private var shouldNavigateToEditTodoList = false
     @State private var shouldNavigateToAddTodoList = false
-    
     @State private var isEditable = false
     
     @ObservedObject private var viewModel: SettingsViewModel
     
     private let viewFactory: ViewFactory
-    
 }
 
+// MARK: Preview
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{

@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct TodoListAddView: View {
+    // MARK: View
     var body: some View {
-        /*NavigationLink(
-            destination: viewModel.viewFactory.todoListView(todoList: viewModel.todoLists[viewModel.todoLists.count-1]),
-            isActive: $shouldNavigateToNewTodoList,
-            label: {}).hidden()
-          */
         Form {
             Section(header: Text("Add To Do List Name")) {
                 TextField("To Do List Name", text: $viewModel.name).accessibility(label: Text("Add To Do List Name"))
+                    .accessibilityIdentifier("To Do List Name TextField")
+                    .accessibilityLabel("To Do List Name")
             }
             Section(header: Text("Choose To Do List Color")) {
                 ColorPicker("To Do List Color", selection: $viewModel.color, supportsOpacity: false)
+                    .accessibilityIdentifier("To Do List Color Color Picker")
+                    .accessibilityLabel("To Do List Color")
             }
         }.accessibility(label: Text("Add New To Do List Form"))
         .navigationBarTitle("Add New To Do List")
@@ -35,6 +35,7 @@ struct TodoListAddView: View {
         })
     }
     
+    // MARK: Action
     private func saveButton() -> some View {
         Button(action: {
             viewModel.saveChanges()
@@ -42,18 +43,25 @@ struct TodoListAddView: View {
         }, label: {
             Text("Save")
         }).disabled(!viewModel.canSave)
+        .accessibilityElement()
+        .accessibilityIdentifier("Save New To Do List Button")
+        .accessibilityLabel("Save New To Do List")
+        .accessibility(addTraits: .isButton)
     }
     
-    //use view model instead of task repo
+    // MARK: Initialization
     init(isPresented: Binding<Bool>, viewModel: TodoListAddViewModel) {
         self._isPresented = isPresented
         self.viewModel = viewModel
     }
     
+    // MARK: Properties
     @Binding private var isPresented: Bool
+    
     @ObservedObject private var viewModel: TodoListAddViewModel
 }
 
+// MARK: Preview
 struct TodoListAddView_Previews: PreviewProvider {
     @State static var isPresented = true
     static var previews: some View {

@@ -10,7 +10,6 @@ import SwiftUI
 import CoreData
 
 class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
-    
     // MARK: Actions
     func completeTask() {
         if !self.tasks.isEmpty {
@@ -65,7 +64,6 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
     init(taskRepository: TaskRepository) {
         self.taskRepository = taskRepository
         self.weather = "Weather"
-        
         self.currentTask = nil
         self.currentTodoList = nil
         
@@ -91,6 +89,7 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
     
     @Published var currentTask: Task?
     @Published var currentTodoList: TodoList?
+    @Published var weather: String
     
     var todoLists: Array<TodoList> {
         todoListResultsController?.fetchedObjects ?? []
@@ -115,8 +114,6 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
         set {
         }
     }
-    
-    @Published var weather: String
     
     private let taskRepository: TaskRepository
 }

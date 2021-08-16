@@ -47,6 +47,7 @@ class SettingsViewModel : NSObject, ObservableObject, NSFetchedResultsController
         resultsController = self.taskRepository.todoListResultsController(with: self)
     }
     
+    // MARK: Properties
     var resultsController: NSFetchedResultsController<TodoList>? = nil
     
     var todoLists: Array<TodoList> {

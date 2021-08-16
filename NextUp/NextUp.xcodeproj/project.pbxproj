@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4784F09B26C6566800B01832 /* EditTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F09A26C6566800B01832 /* EditTaskViewModel.swift */; };
 		4784F09D26C7273600B01832 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F09C26C7273600B01832 /* TaskViewModel.swift */; };
-		4784F09F26C7464F00B01832 /* NoTodoListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F09E26C7464F00B01832 /* NoTodoListsView.swift */; };
 		4784F0A226C749D900B01832 /* TodoListAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F0A126C749D900B01832 /* TodoListAddView.swift */; };
 		4784F0A426C74C4200B01832 /* TodoListAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F0A326C74C4200B01832 /* TodoListAddViewModel.swift */; };
 		4784F0AC26C81EBB00B01832 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784F0AB26C81EBB00B01832 /* SettingsViewModel.swift */; };
@@ -61,7 +60,6 @@
 /* Begin PBXFileReference section */
 		4784F09A26C6566800B01832 /* EditTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewModel.swift; sourceTree = "<group>"; };
 		4784F09C26C7273600B01832 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
-		4784F09E26C7464F00B01832 /* NoTodoListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoTodoListsView.swift; sourceTree = "<group>"; };
 		4784F0A126C749D900B01832 /* TodoListAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListAddView.swift; sourceTree = "<group>"; };
 		4784F0A326C74C4200B01832 /* TodoListAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListAddViewModel.swift; sourceTree = "<group>"; };
 		4784F0AB26C81EBB00B01832 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 				479922FA26BAF94C00CB5919 /* TaskAddView.swift */,
 				479922FC26BAF98E00CB5919 /* SettingsView.swift */,
 				47BE11C526BE15650067AE26 /* TaskEditView.swift */,
-				4784F09E26C7464F00B01832 /* NoTodoListsView.swift */,
 				4784F0A126C749D900B01832 /* TodoListAddView.swift */,
 				4784F0AF26C820A600B01832 /* TodoListEditView.swift */,
 			);
@@ -424,7 +421,6 @@
 				479922FB26BAF94C00CB5919 /* TaskAddView.swift in Sources */,
 				4784F0AC26C81EBB00B01832 /* SettingsViewModel.swift in Sources */,
 				4784F0A226C749D900B01832 /* TodoListAddView.swift in Sources */,
-				4784F09F26C7464F00B01832 /* NoTodoListsView.swift in Sources */,
 				47BE11CD26C393AA0067AE26 /* TodoListViewModel.swift in Sources */,
 				47BE11BE26BCC7730067AE26 /* Injector.swift in Sources */,
 				4784F09B26C6566800B01832 /* EditTaskViewModel.swift in Sources */,

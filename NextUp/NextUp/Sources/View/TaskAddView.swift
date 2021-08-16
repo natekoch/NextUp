@@ -10,6 +10,7 @@ import CoreGraphics
 
 struct TaskAddView: View {
     var body: some View {
+        // MARK: Actions
         VStack(alignment: .leading){
             Text("To Do List: \(viewModel.todoList.name)").bold().padding(.horizontal)
             Form {
@@ -44,6 +45,7 @@ struct TaskAddView: View {
         })
     }
     
+    // MARK: Action
     private func saveButton() -> some View {
         Button(action: {
             viewModel.saveChanges()
@@ -52,8 +54,13 @@ struct TaskAddView: View {
         }, label: {
             Text("Save")
         }).disabled(!viewModel.canSave)
+        .accessibilityElement()
+        .accessibilityIdentifier("Save New Task Button")
+        .accessibilityLabel("Save New Task")
+        .accessibility(addTraits: .isButton)
     }
     
+    // MARK: Initialization
     init(isPresented: Binding<Bool>, viewModel: AddTaskViewModel) {
         self._isPresented = isPresented
         self.viewModel = viewModel
@@ -61,12 +68,15 @@ struct TaskAddView: View {
         self.color = Color(.sRGB, red: Double(viewModel.todoList.redValue), green: Double(viewModel.todoList.greenValue), blue: Double(viewModel.todoList.blueValue), opacity: 100)
     }
     
+    // MARK: Properties
     @Binding private var isPresented: Bool
+    
     @ObservedObject private var viewModel: AddTaskViewModel
     
     private let color: Color
 }
 
+// MARK: Preview
 struct TaskAddView_Previews: PreviewProvider {
     @State static var isPresented = true
 

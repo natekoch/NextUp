@@ -48,17 +48,21 @@ struct TaskView: View {
                     Text("Next Up:")
                         .bold()
                         .font(.system(size: 20))
+                        .accessibilityLabel("What Is Next Up")
                     if (!noTasks) {
                         Text(self.viewModel.currentTask?.name ?? "")
                             .bold()
                             .font(.system(size: 30))
                             .foregroundColor(self.color)
+                            .accessibilityLabel("Task Name")
                     }
                     if (viewModel.currentTask?.dateEnabled ?? false) {
                         Text(displayDateString)
+                            .accessibilityLabel("Due Date")
                     }
                     if (viewModel.currentTask?.weatherEnabled ?? false) {
                         Text(displayTemperatureString)
+                            .accessibilityLabel("Current Temperature")
                     }
                     Button(action: {
                         viewModel.completeTask()
@@ -67,7 +71,10 @@ struct TaskView: View {
                     }, label: {
                         Image(systemName: "checkmark.circle.fill").resizable().frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(.green)
                             
-                    })
+                    }).accessibilityElement()
+                    .accessibilityIdentifier("Complete Task Button")
+                    .accessibilityLabel("Complete Task")
+                    .accessibility(addTraits: .isButton)
                     .font(.system(size: 20))
                     Button(action: {
                         viewModel.skipTask()
@@ -75,7 +82,10 @@ struct TaskView: View {
                         viewModel.updateCurrentTask()
                     }, label: {
                         Image(systemName: "arrow.right").resizable().frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(.red)
-                    })
+                    }).accessibilityElement()
+                    .accessibilityIdentifier("Skip Task Button")
+                    .accessibilityLabel("Skip Task")
+                    .accessibility(addTraits: .isButton)
                     Spacer()
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 .gesture(drag)
@@ -116,7 +126,10 @@ struct TaskView: View {
                             .font(Font.body)
                             .imageScale(.large)
                             .accentColor(.red)
-                    })
+                    }).accessibilityElement()
+                    .accessibilityIdentifier("Settings Gear Button")
+                    .accessibilityLabel("Settings Gear")
+                    .accessibility(addTraits: .isButton)
                     Spacer()
                     Button(action: {
                         shouldNavigateToEditTask = true
@@ -124,12 +137,16 @@ struct TaskView: View {
                         viewModel.updateCurrentTask()
                     }, label: {
                         Text("Edit")
-                    })
+                    }).accessibilityElement()
+                    .accessibilityIdentifier("Edit Task Button")
+                    .accessibilityLabel("Edit Task")
+                    .accessibility(addTraits: .isButton)
                 }
             })
         }
     }
     
+    // MARK: Action
     var drag: some Gesture {
         //https://stackoverflow.com/questions/60885532/how-to-detect-swiping-up-down-left-and-right-with-swiftui-on-a-view
         DragGesture(minimumDistance: 10, coordinateSpace: .local)
@@ -143,33 +160,26 @@ struct TaskView: View {
             }
     }
     
-    
-    
     // MARK: Initialization
     init(isPresented: Binding<Bool>, viewModel: TaskViewModel, viewFactory: ViewFactory) {
         self._isPresented = isPresented
         self.viewModel = viewModel
         self.viewFactory = viewFactory
-        
-        //self.dateFormatter.locale = Locale(identifier: "en_US")
         self.dateFormatter.dateStyle = .medium
         self.dateFormatter.timeStyle = .short
-        
         self.noTasks = viewModel.noTasks
         self.noTodoLists = viewModel.noTodoLists
     }
-    
-    
     
     // MARK: Properties
     @State private var shouldNavigateToEditTask = false
     @State private var shouldNavigateToSettings = false
     @State private var shouldNavigateToTodoList = false
-    
     @State private var noTasks: Bool
     @State private var noTodoLists: Bool
     
     @Binding private var isPresented: Bool
+    
     @ObservedObject private var viewModel: TaskViewModel
     
     private let viewFactory: ViewFactory
@@ -183,7 +193,6 @@ struct TaskView: View {
     }
     
     private let dateFormatter: DateFormatter = DateFormatter()
-    
     private let measurementFormatter: MeasurementFormatter = MeasurementFormatter()
     
     private var temperature: Measurement<UnitTemperature> {
@@ -207,9 +216,9 @@ struct TaskView: View {
     }
 }
 
+// MARK: Preview
 struct TaskView_Previews: PreviewProvider {
     @State static var isPresented = false
-
     static var previews: some View {
         let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", orderIndex: 0, context: Injector.shared.persistentContainer.viewContext)
         
