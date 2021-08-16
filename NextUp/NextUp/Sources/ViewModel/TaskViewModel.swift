@@ -76,7 +76,6 @@ class TaskViewModel : NSObject, ObservableObject, NSFetchedResultsControllerDele
     }
  
     // MARK: Properties
-    
     var todoListResultsController: NSFetchedResultsController<TodoList>? {
         get {self.taskRepository.todoListResultsController(with: self)}
         set {}

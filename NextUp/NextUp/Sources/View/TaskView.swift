@@ -15,15 +15,21 @@ struct TaskView: View {
     // MARK: View
     var body: some View {
         if (viewModel.noTodoLists) {
-            viewFactory.todoListAddView(isPresented: $viewModel.noTodoLists)
+            viewFactory.todoListAddView(isPresented: $viewModel.noTodoLists).onDisappear {
+                viewModel.updateCurrentTodoList()
+                viewModel.updateCurrentTask()
+            }
         }
         else if (viewModel.noTasks) {
-            viewFactory.taskAddView(isPresented: $viewModel.noTasks, todoList: viewModel.currentTodoList!)
+            viewFactory.taskAddView(isPresented: $viewModel.noTasks, todoList: viewModel.currentTodoList!).onDisappear {
+                viewModel.updateCurrentTodoList()
+                viewModel.updateCurrentTask()
+            }
         } else {
             ZStack {
                 // To Do List button Navigation
                 NavigationLink(destination: viewFactory.todoListView(todoList: viewModel.currentTodoList!), isActive: $shouldNavigateToTodoList, label: {}).hidden()
-                
+                    
                 // Edit Task Button Navigation
                 // TODO: fix error here when nil
                 NavigationLink(

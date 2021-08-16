@@ -10,23 +10,26 @@ import CoreGraphics
 
 struct TaskAddView: View {
     var body: some View {
-        Form {
-            Section(header: Text("Add Task Name")) {
-                TextField("Task Name", text: $viewModel.name)
-                    .accessibility(label: Text("Change Task Name"))
-            }
-            Section(header: Text("Choose Due Date")) {
-                Toggle("Enable Due Date", isOn: $viewModel.dateEnabled)
-                    .accessibility(label: Text("Toggle Due Date"))
-                DatePicker("Due Date", selection: $viewModel.date)
-                    .accessibility(label: Text("Change Due Date"))
-                    .disabled(!viewModel.dateEnabled)
-            }
-            Section(header: Text("Display Weather?")) {
-                Toggle("Display Weather", isOn: $viewModel.weatherEnabled)
-                    .accessibility(label: Text("Toggle Weather"))
-            }
-        }.accessibilityLabel("Add Task Form")
+        VStack(alignment: .leading){
+            Text("To Do List: \(viewModel.todoList.name)").bold().padding(.horizontal)
+            Form {
+                Section(header: Text("Add Task Name")) {
+                    TextField("Task Name", text: $viewModel.name)
+                        .accessibility(label: Text("Change Task Name"))
+                }
+                Section(header: Text("Choose Due Date")) {
+                    Toggle("Enable Due Date", isOn: $viewModel.dateEnabled)
+                        .accessibility(label: Text("Toggle Due Date"))
+                    DatePicker("Due Date", selection: $viewModel.date)
+                        .accessibility(label: Text("Change Due Date"))
+                        .disabled(!viewModel.dateEnabled)
+                }
+                Section(header: Text("Display Weather?")) {
+                    Toggle("Display Weather", isOn: $viewModel.weatherEnabled)
+                        .accessibility(label: Text("Toggle Weather"))
+                }
+            }.accessibilityLabel("Add Task Form")
+        }
         .foregroundColor(self.color)
         .navigationBarTitle("Add New Task")
         .toolbar(content: {
