@@ -10,7 +10,7 @@ import SwiftUI
 
 class ViewFactory {
     func taskAddView(isPresented: Binding<Bool>, todoList: TodoList) -> TaskAddView {
-        TaskAddView(isPresented: isPresented, viewModel: AddTaskViewModel(todoList: todoList, taskRepository: self.taskRepository))
+        TaskAddView(isPresented: isPresented, viewModel: AddTaskViewModel(todoList: todoList, taskRepository: self.taskRepository, taskViewModel: TaskViewModel(taskRepository: self.taskRepository)))
     }
     
     func taskEditView(isPresented: Binding<Bool>, task: Task) -> TaskEditView {
@@ -26,7 +26,7 @@ class ViewFactory {
     }
     
     func todoListAddView(isPresented: Binding<Bool>) -> TodoListAddView {
-        TodoListAddView(isPresented: isPresented, viewModel: TodoListAddViewModel(taskRepository: self.taskRepository, viewFactory: self))
+        TodoListAddView(isPresented: isPresented, viewModel: TodoListAddViewModel(taskRepository: self.taskRepository, viewFactory: self, taskViewModel: TaskViewModel(taskRepository: self.taskRepository)))
     }
     
     func todoListEditView(isPresented: Binding<Bool>, todoList: TodoList) -> TodoListEditView {

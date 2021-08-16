@@ -17,6 +17,9 @@ class AddTaskViewModel : ObservableObject {
         
         taskRepository.addTask(to: todoList, name: name, date: date, weatherEnabled: weatherEnabled, dateEnabled: dateEnabled)
         
+        taskViewModel.updateCurrentTask()
+        taskViewModel.updateCurrentTodoList()
+        
         if dateEnabled {
             scheduleNotification()
         }
@@ -39,13 +42,14 @@ class AddTaskViewModel : ObservableObject {
     
     
     // MARK: Initialization
-    init(todoList: TodoList, taskRepository: TaskRepository) {
+    init(todoList: TodoList, taskRepository: TaskRepository, taskViewModel: TaskViewModel) {
         self.todoList = todoList
         self.taskRepository = taskRepository
         self.name = ""
         self.date = Date()
         self.weatherEnabled = false
         self.dateEnabled = false
+        self.taskViewModel = taskViewModel
     }
     
     
@@ -57,6 +61,7 @@ class AddTaskViewModel : ObservableObject {
     @Published var dateEnabled: Bool
     @Published var weatherEnabled: Bool
     private let taskRepository: TaskRepository
+    private let taskViewModel: TaskViewModel
     
     var canSave: Bool {
         name != ""

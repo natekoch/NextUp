@@ -74,7 +74,7 @@ struct TaskAddView_Previews: PreviewProvider {
         let todoList = TodoList(redValue: 1.0, greenValue: 0.0, blueValue: 1.0, name: "Test TodoList", orderIndex: 0, context: Injector.shared.persistentContainer.viewContext)
 
         return NavigationView {
-            TaskAddView(isPresented: $isPresented, viewModel: AddTaskViewModel(todoList: todoList, taskRepository: Injector.shared.taskRepository))
+            TaskAddView(isPresented: $isPresented, viewModel: AddTaskViewModel(todoList: todoList, taskRepository: Injector.shared.taskRepository, taskViewModel: TaskViewModel(taskRepository: Injector.shared.taskRepository)))
         }
     }
 }

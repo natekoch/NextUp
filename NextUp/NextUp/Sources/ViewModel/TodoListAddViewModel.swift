@@ -19,7 +19,8 @@ class TodoListAddViewModel : NSObject, ObservableObject, NSFetchedResultsControl
         
         taskRepository.addTodoList(withName: name, withColor: color)
         
-        //viewFactory.todoListView(todoList: todoLists[todoLists.count-1])
+        taskViewModel.updateCurrentTodoList()
+        taskViewModel.updateCurrentTask()
     }
     
     // MARK: NSFetchedResultsController
@@ -28,11 +29,12 @@ class TodoListAddViewModel : NSObject, ObservableObject, NSFetchedResultsControl
     }
     
     // MARK: Initialization
-    init(taskRepository: TaskRepository, viewFactory: ViewFactory) {
+    init(taskRepository: TaskRepository, viewFactory: ViewFactory, taskViewModel: TaskViewModel) {
         self.taskRepository = taskRepository
         self.viewFactory = viewFactory
         self.name = ""
         self.color = CGColor(red: 0, green: 0, blue: 0, alpha: 100)
+        self.taskViewModel = taskViewModel
         super.init()
         
         resultsController = self.taskRepository.todoListResultsController(with: self)
@@ -43,6 +45,7 @@ class TodoListAddViewModel : NSObject, ObservableObject, NSFetchedResultsControl
     
     let viewFactory: ViewFactory
     private let taskRepository: TaskRepository
+    private let taskViewModel: TaskViewModel
     
     var resultsController: NSFetchedResultsController<TodoList>? = nil
 
