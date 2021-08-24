@@ -13,7 +13,7 @@ import CoreLocation
 class WeatherAPI {
       
     private let openWeatherMapBaseURL = "http://api.openweathermap.org/data/2.5/weather"
-    private let openWeatherMapAPIKey = "ebbbd817069828c1aa7b274584e723ac"
+    private let openWeatherMapAPIKey = "" // invalidated old one since accidentally pushed key
       
     func getWeather(lat: String, lon: String) {
         let session = URLSession.shared
